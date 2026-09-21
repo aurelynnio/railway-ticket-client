@@ -292,18 +292,19 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Visual card — no blur glow behind, just clean card with stamp */}
-            <div className="relative">
-              <Card variant="elevated" padding="lg" className="relative">
+            {/* Visual card — clean card with stamp */}
+            <div className="relative pt-3 pr-3">
+              <Card variant="elevated" padding="lg" className="relative !overflow-visible">
                 {/* Stamp decoration */}
-                <div className="absolute -right-3 -top-3 z-10">
-                  <span className="stamp bg-accent text-white">Nổi bật</span>
+                <div className="absolute -right-2 -top-2.5 z-10">
+                  <span className="stamp bg-accent text-white shadow-sm">Nổi bật</span>
                 </div>
 
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-ink-subtle">
-                      #{(featured.ticketId || "—").slice(0, 8).toUpperCase()}
+                  <div className="flex items-center justify-between pr-16">
+                    <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-primary">
+                      <TrainFront className="size-3.5" />
+                      Tàu {featured.trainNumber ?? "SE1"}
                     </span>
                     <Badge variant="outline">{calcDuration(featured.dateStart, featured.dateEnd)}</Badge>
                   </div>
@@ -322,10 +323,10 @@ export default function HomePage() {
                     </div>
                     <div className="flex flex-1 flex-col items-center px-4">
                       <TrainFront className="size-5 text-accent" />
-                      <div className="mt-2 flex w-full items-center gap-1">
-                        <span className="size-2.5 rounded-full border-2 border-primary bg-primary-soft" />
-                        <div className="h-px flex-1 border-t border-dashed border-border" />
-                        <span className="size-2.5 rounded-full border-2 border-primary bg-primary" />
+                      <div className="mt-2 flex w-full items-center gap-1.5">
+                        <span className="size-2.5 shrink-0 rounded-full border-2 border-primary bg-primary-soft" />
+                        <div className="h-0 flex-1 border-t-2 border-dashed border-primary/40" />
+                        <span className="size-2.5 shrink-0 rounded-full border-2 border-primary bg-primary" />
                       </div>
                     </div>
                     <div className="text-right">
