@@ -68,11 +68,11 @@ export function AdminLayout({
         >
           {!collapsed && (
             <span className="font-display text-base font-semibold tracking-tight text-ink">
-              Mekong Line
+              Vé Tàu Tết Admin
             </span>
           )}
           {collapsed && (
-            <span className="font-display text-sm font-bold text-primary">ML</span>
+            <span className="font-display text-sm font-bold text-primary">VTT</span>
           )}
         </div>
 

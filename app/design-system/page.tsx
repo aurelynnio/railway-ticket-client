@@ -38,9 +38,9 @@ import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
-  title: "Design System — Mekong Line",
+  title: "Design System — Vé Tàu Tết 2026",
   description:
-    "Bộ thiết kế trực quan cho Mekong Line: màu sắc, typography, thành phần và quy tắc thiết kế.",
+    "Bộ thiết kế trực quan cho Vé Tàu Tết 2026: màu sắc, typography, thành phần và quy tắc thiết kế.",
 };
 
 /* ------------------------------------------------------------------ */
@@ -145,12 +145,12 @@ export default function DesignSystemPage() {
         <div className="app-container relative py-20">
           <div className="eyebrow">Design System v2.0</div>
           <h1 className="max-w-3xl">
-            Mekong Line
+            Vé Tàu Tết 2026
             <span className="gradient-text-warm"> — Hệ thống thiết kế</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            Bộ thiết kế trực quan lấy cảm hứng từ hoàng hôn sông Mê Kông và
-            hành trình đường sắt Bắc-Nam. Ấm áp, tinh tế, đầy tính biên tập —
+            Bộ thiết kế trực quan mang đậm phong vị Tết cổ truyền và
+            hành trình sum họp gia đình Bắc-Nam. Ấm áp, tinh tế, đầy tính biên tập —
             xây dựng trên shadcn/ui với các token tùy chỉnh hoàn chỉnh.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -711,7 +711,7 @@ export default function DesignSystemPage() {
                   <Input
                     type="email"
                     placeholder="email@example.com"
-                    defaultValue="user@mekongline.vn"
+                    defaultValue="user@vetautet.app"
                   />
                 </div>
                 <div>
@@ -1113,7 +1113,7 @@ export default function DesignSystemPage() {
                   <Train className="size-4" />
                 </div>
                 <span className="display text-xl font-semibold text-ink">
-                  Mekong Line
+                  Vé Tàu Tết 2026
                 </span>
               </div>
               <p className="mt-2 text-sm text-ink-muted">
@@ -1131,7 +1131,7 @@ export default function DesignSystemPage() {
           </div>
           <div className="mt-8 gradient-divider" />
           <p className="mt-6 text-center text-xs text-ink-subtle">
-            © 2026 Mekong Line Design System. Tất cả các quyền được bảo lưu.
+            © 2026 Vé Tàu Tết Design System. Tất cả các quyền được bảo lưu.
           </p>
         </div>
       </footer>

@@ -5,7 +5,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 /**
- * Typography strategy — Mekong Line Design System
+ * Typography strategy — Vé Tàu Tết Design System
  *
  * Two-tier font system with Poppins:
  *   - Sans / Display: Poppins (300/400/500/600/700/800)
@@ -42,9 +42,9 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mekong Line — Đặt vé tàu trực tuyến",
+  title: "Vé Tàu Tết 2026 — Đặt vé tàu Tết Ất Tỵ trực tuyến | vetautet.app",
   description:
-    "Tìm chuyến, chọn ghế, thanh toán và nhận vé điện tử cho hành trình đường sắt Bắc-Nam.",
+    "Hệ thống đặt vé tàu Tết Ất Tỵ 2026 trực tuyến chính thức. Giữ chỗ siêu tốc, chọn ghế ưng ý, thanh toán an toàn qua VNPay, xuất vé điện tử tức thì.",
 };
 
 export default function RootLayout({

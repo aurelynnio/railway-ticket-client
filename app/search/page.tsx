@@ -99,13 +99,13 @@ function SearchPageContent() {
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
             <span className="h-px w-10 bg-accent" />
-            Tìm kiếm
+            Cao điểm Tết 2026
           </span>
           <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Tìm chuyến tàu
+            Tìm vé tàu Tết 2026
           </h1>
           <p className="mt-2 max-w-xl text-base text-ink-muted">
-            Lọc theo ga đi, ga đến, ngày khởi hành và hạng ghế để tìm chuyến phù hợp nhất.
+            Tra cứu chuyến tàu Xuân Ất Tỵ, chọn ga đi, ga đến, ngày khởi hành và hạng ghế đón Tết đoàn viên.
           </p>
         </div>
       </div>

@@ -55,7 +55,7 @@ export function AuthLayout({
           <div className="space-y-4">
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">
               <span className="h-px w-10 bg-gold/60" />
-              Mekong Line
+              Vé Tàu Tết 2026
             </span>
             <h1 className="font-display text-4xl font-semibold leading-[1.15] tracking-tight">
               {title}

@@ -13,9 +13,9 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Trang chủ" },
-  { href: "/search", label: "Tìm chuyến" },
-  { href: "/tickets", label: "Vé tàu" },
-  { href: "/route-map", label: "Lộ trình" },
+  { href: "/search", label: "Tìm vé Tết" },
+  { href: "/tickets", label: "Lịch tàu Tết" },
+  { href: "/route-map", label: "Lộ trình Bắc - Nam" },
 ];
 
 export function SiteHeader() {

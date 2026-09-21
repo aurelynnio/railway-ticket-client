@@ -92,28 +92,28 @@ export default function HomePage() {
         </svg>
 
         <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 sm:px-6 lg:px-8 lg:pb-32 lg:pt-28">
-          {/* Left-aligned editorial layout, not centered SaaS */}
+          {/* Left-aligned editorial layout */}
           <div className="max-w-3xl">
             <div className="flex items-center gap-3">
-              <span className="stamp text-gold">Mùa cao điểm 2026</span>
-              <span className="text-xs font-medium text-white/50">
-                Đặt sớm tiết kiệm đến 20%
+              <span className="stamp text-gold border-gold">🧧 Mở bán vé Tết 2026</span>
+              <span className="text-xs font-semibold text-white/80">
+                Xuân Ất Tỵ • Đong đầy yêu thương
               </span>
             </div>
 
             <h1 className="mt-8 font-display text-[clamp(2.75rem,7vw,5rem)] font-bold leading-[0.98] tracking-[-0.03em] text-white">
-              Khám phá Việt Nam
+              Xuân Về Đoàn Viên
               <br />
-              <span className="hand-underline text-gold">qua cửa sổ tàu hỏa</span>
+              <span className="hand-underline text-gold">Vé Tàu Tết 2026</span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
-              Đặt vé tàu Bắc – Trung – Nam trong vài cú chạm. Ghế ngồi mềm,
-              giường nằm tiện nghi, thanh toán VNPay an toàn.
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80">
+              Đặt vé tàu Tết Bắc – Nam nhanh chóng, minh bạch và an toàn.
+              Giữ chỗ về quê sum họp gia đình, an tâm chọn khoang giường nằm, ghế mềm ưng ý cùng Đường sắt Việt Nam.
             </p>
           </div>
 
-          {/* Search bar — clean, no excessive shadow */}
+          {/* Search bar */}
           <div className="mt-12 max-w-4xl">
             <Card
               variant="outlined"
@@ -129,10 +129,10 @@ export default function HomePage() {
                         setFrom(e.target.value);
                         setSearchError(null);
                       }}
-                      placeholder="Điểm đi"
+                      placeholder="Ga đi"
                       className="bg-white/10 pl-10 text-white shadow-sm [&>svg]:text-white/50 data-[placeholder]:text-white/50"
                     >
-                      <option value="">Điểm đi</option>
+                      <option value="">Ga đi</option>
                       {stations.map((s) => (
                         <option key={s.code} value={s.code ?? ""}>
                           {s.name} ({s.code})
@@ -160,10 +160,10 @@ export default function HomePage() {
                         setTo(e.target.value);
                         setSearchError(null);
                       }}
-                      placeholder="Điểm đến"
+                      placeholder="Ga đến"
                       className="bg-white/10 pl-10 text-white shadow-sm [&>svg]:text-white/50 data-[placeholder]:text-white/50"
                     >
-                      <option value="">Điểm đến</option>
+                      <option value="">Ga đến</option>
                       {stations.map((s) => (
                         <option key={s.code} value={s.code ?? ""}>
                           {s.name} ({s.code})
@@ -185,9 +185,9 @@ export default function HomePage() {
                       icon={<CalendarDays className="size-4 shrink-0 text-white/50" />}
                     />
                   </div>
-                  <Button type="submit" size="lg" variant="accent" className="gap-2 shadow-md">
+                  <Button type="submit" size="lg" variant="accent" className="gap-2 shadow-md bg-accent hover:bg-accent-hover text-white font-semibold">
                     <Search className="size-4" />
-                    <span className="hidden sm:inline">Tìm</span>
+                    <span className="hidden sm:inline">Tìm vé Tết</span>
                   </Button>
                 </div>
                 {searchError && (
@@ -198,12 +198,13 @@ export default function HomePage() {
               </form>
             </Card>
 
-            {/* Stats — left-aligned, vertical dividers, magazine feel */}
+            {/* Stats */}
             <div className="mt-10 flex flex-wrap items-start gap-x-10 gap-y-4">
               {[
-                { value: String(STATIONS.length), label: "Ga tàu trên tuyến Bắc-Nam" },
-                { value: STATIONS[STATIONS.length - 1]?.km ?? "—", label: "Tổng chiều dài đường sắt" },
-                { value: "24/7", label: "Hỗ trợ khách hàng" },
+                { value: "100%", label: "Vé tàu Tết chính hãng" },
+                { value: String(STATIONS.length), label: "Ga tàu kết nối Bắc - Nam" },
+                { value: "24/7", label: "Giữ chỗ & Hỗ trợ xuyên Tết" },
+                { value: "VNPay", label: "Thanh toán an toàn, bảo mật" },
               ].map((s, i) => (
                 <div key={s.label} className="flex items-start gap-4">
                   {i > 0 && <span className="mt-1 h-10 w-px bg-white/15" />}
@@ -211,7 +212,7 @@ export default function HomePage() {
                     <p className="font-display text-3xl font-bold tabular-nums text-white sm:text-4xl">
                       {s.value}
                     </p>
-                    <p className="mt-0.5 text-xs text-white/50">{s.label}</p>
+                    <p className="mt-0.5 text-xs text-white/70">{s.label}</p>
                   </div>
                 </div>
               ))}
@@ -232,7 +233,7 @@ export default function HomePage() {
               <div className="relative">
                 <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
                   <span className="h-px w-10 bg-accent" />
-                  Tuyến nổi bật trong tuần
+                  🧧 Chuyến tàu Tết tiêu biểu
                 </span>
                 <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
                   {featured.from.name ?? featured.from.code}
@@ -240,7 +241,7 @@ export default function HomePage() {
                   {featured.to.name ?? featured.to.code}
                 </h2>
                 <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-muted">
-                  {featured.title ?? "Hành trình xuyên miền đất nước, ngắm cảnh từ cửa sổ tàu hỏa. Những cung đường đẹp nhất Việt Nam."}
+                  {featured.title ?? "Hành trình đoàn viên sum họp, ngắm sắc xuân rạng ngời từ khung cửa sổ tàu hỏa dọc dải đất hình chữ S."}
                 </p>
               </div>
 
@@ -356,72 +357,72 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* ===== WHY US — varied card styles, not identical ===== */}
+      {/* ===== WHY US — Tet benefits ===== */}
       <section className="border-y border-border bg-card/40">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between">
             <div>
               <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
                 <span className="h-px w-10 bg-accent" />
-                Vì sao chọn chúng tôi
+                Đặc quyền vé Tết 2026
               </span>
               <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-                Trải nghiệm đặt vé
+                Trải nghiệm đặt vé Tết
                 <br />
-                <span className="text-ink-muted">khác biệt</span>
+                <span className="text-primary font-bold">Thuận tiện & Thảnh thơi</span>
               </h2>
             </div>
           </div>
 
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {/* Card 1 — dark filled */}
-            <div className="rounded-2xl bg-primary p-7 text-primary-foreground">
+            <div className="rounded-2xl bg-primary p-7 text-primary-foreground shadow-md">
               <div className="flex size-12 items-center justify-center rounded-xl bg-white/10">
-                <Ticket className="size-5" />
+                <Ticket className="size-5 text-gold" />
               </div>
               <h3 className="mt-5 font-display text-xl font-semibold">
-                Giữ chỗ tức thì
+                Giữ chỗ Tết tức thì
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">
-                Chọn ghế và giữ chỗ trong 10 phút. Không cần gọi điện, không cần chờ đợi.
+              <p className="mt-2 text-sm leading-relaxed text-white/80">
+                Chọn khoang, chọn ghế và giữ chỗ ngay trong 10 phút. Hệ thống chịu tải cao, không lo gián đoạn.
               </p>
-              <div className="mt-6 flex items-center gap-2 text-xs text-white/50">
-                <span className="font-mono">10:00</span>
-                <span>phút giữ chỗ</span>
+              <div className="mt-6 flex items-center gap-2 text-xs text-white/60">
+                <span className="font-mono text-gold font-bold">10:00</span>
+                <span>phút giữ chỗ thảnh thơi</span>
               </div>
             </div>
 
             {/* Card 2 — outlined with accent border */}
-            <div className="rounded-2xl border-2 border-accent/30 bg-card p-7">
+            <div className="rounded-2xl border-2 border-accent/30 bg-card p-7 shadow-sm">
               <div className="flex size-12 items-center justify-center rounded-xl bg-accent-soft text-accent">
                 <ShieldCheck className="size-5" />
               </div>
               <h3 className="mt-5 font-display text-xl font-semibold text-ink">
-                Thanh toán an toàn
+                Thanh toán VNPay an toàn
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                VNPay chuẩn PCI DSS. Mọi giao dịch được mã hóa và giám sát 24/7.
+                Hỗ trợ quét VNPAY-QR, thẻ ATM nội địa và quốc tế. Mọi giao dịch được bảo mật nghiêm ngặt 24/7.
               </p>
               <div className="mt-6 flex items-center gap-2">
-                <Badge variant="accent" className="text-[10px]">PCI DSS</Badge>
-                <Badge variant="outline" className="text-[10px]">Mã hóa 256-bit</Badge>
+                <Badge variant="accent" className="text-[10px]">VNPay QR</Badge>
+                <Badge variant="outline" className="text-[10px]">Bảo mật PCI DSS</Badge>
               </div>
             </div>
 
             {/* Card 3 — gold tinted */}
-            <div className="rounded-2xl border border-gold/30 bg-gold-soft/50 p-7">
+            <div className="rounded-2xl border border-gold/30 bg-gold-soft/50 p-7 shadow-sm">
               <div className="flex size-12 items-center justify-center rounded-xl bg-gold text-white">
                 <Wallet className="size-5" />
               </div>
               <h3 className="mt-5 font-display text-xl font-semibold text-ink">
-                Vé điện tử QR
+                Vé điện tử QR lên tàu
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                Vé xuất hiện ngay trong tài khoản. Quét QR lên tàu, không cần in giấy.
+                Nhận vé điện tử tức thì qua SMS và Email. Quét mã QR trực tiếp tại cổng ga, không cần chen chúc in vé giấy.
               </p>
               <div className="mt-6 flex items-center gap-2 text-xs text-ink-subtle">
-                <span className="font-mono">QR</span>
-                <span>quét mã lên tàu</span>
+                <span className="font-mono font-bold text-accent">QR CODE</span>
+                <span>Lên tàu nhanh chóng</span>
               </div>
             </div>
           </div>
@@ -434,10 +435,10 @@ export default function HomePage() {
           <div>
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
               <span className="h-px w-10 bg-accent" />
-              Tuyến phổ biến
+              Tuyến cao điểm Tết 2026
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-              Chuyến đang mở bán
+              Chuyến tàu Tết đang mở bán
             </h2>
           </div>
           <Button asChild variant="ghost" size="sm">

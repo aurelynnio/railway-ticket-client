@@ -72,38 +72,37 @@
 }
 
 /* =========================================================================
-   MEKONG LINE — Design System
+   VÉ TÀU TẾT 2026 — Design System (Xuân Đoàn Viên)
    =========================================================================
-   Direction: Warm editorial travel — inspired by Mekong sunset & railway
-   Primary: Deep forest green  #0f3d2e  (trust, nature, Vietnamese jungle)
-   Accent:  Sunset orange      #d96c3a  (warmth, energy, Mekong dusk)
-   Gold:    Harvest gold       #c9a227  (rice fields, premium, quality)
-   Surface: Warm paper         #faf7f2  (not clinical white)
+   Direction: Festive, Warm, Luxurious Tet Spirit — Xuân Ất Tỵ 2026
+   Primary:   Đỏ nhung Tết / Imperial Ruby  #991b1b  (may mắn, sum vầy, hoan hỷ)
+   Accent:    Vàng hoa mai / Hoa Mai Amber  #d97706  (tài lộc, thịnh vượng, ấm áp)
+   Gold:      Hoàng kim rực rỡ              #f59e0b  (sắc xuân, đoàn viên)
+   Surface:   Giấy gấm ấm                   #faf7f2  (ấm áp, thanh lịch)
    Typography: Poppins (UI & display) + JetBrains Mono (data)
-   Philosophy: Generous whitespace, warm borders, soft depth, editorial hierarchy
    ========================================================================= */
 
 :root {
-  /* === Primary — Deep Forest Green === */
-  --primary: #0f3d2e;
-  --primary-hover: #0a2e22;
-  --primary-active: #08241b;
-  --primary-soft: #e6f0eb;
-  --primary-soft-hover: #d4e6dd;
+  /* === Primary — Đỏ nhung Tết may mắn === */
+  --primary: #991b1b;
+  --primary-hover: #7f1d1d;
+  --primary-active: #6b1717;
+  --primary-soft: #fef2f2;
+  --primary-soft-hover: #fee2e2;
 
-  /* === Accent — Sunset Orange === */
-  --accent: #d96c3a;
-  --accent-hover: #c45a2a;
-  --accent-active: #a84a20;
+  /* === Accent — Vàng hoa mai tài lộc === */
+  --accent: #d97706;
+  --accent-hover: #b45309;
+  --accent-active: #92400e;
   --accent-foreground: #ffffff;
-  --accent-soft: #fdf0e8;
-  --accent-soft-hover: #fbe2d2;
+  --accent-soft: #fffbeb;
+  --accent-soft-hover: #fef3c7;
 
-  /* === Gold — Harvest Gold === */
-  --gold: #c9a227;
-  --gold-hover: #b08d1f;
-  --gold-soft: #faf3dc;
-  --gold-foreground: #ffffff;
+  /* === Gold — Hoàng kim xuân === */
+  --gold: #f59e0b;
+  --gold-hover: #d97706;
+  --gold-soft: #fffbeb;
+  --gold-foreground: #78350f;
 
   /* === Ink — Warm Charcoal === */
   --ink: #1a1a1a;
@@ -124,22 +123,22 @@
 
   --primary-foreground: #ffffff;
 
-  --secondary: #f3efe8;
+  --secondary: #f6efe6;
   --secondary-foreground: #1a1a1a;
 
-  --muted: #f5f2ec;
+  --muted: #f7f1e9;
   --muted-foreground: #5c5c5c;
 
   /* === Surface Scale === */
   --surface-1: #ffffff;
-  --surface-2: #f7f4ee;
-  --surface-3: #efeae0;
+  --surface-2: #f8f4ed;
+  --surface-3: #efe6da;
 
-  /* === Borders — REMOVED: use shadows & background instead === */
-  --border: transparent;
-  --border-strong: transparent;
-  --input: transparent;
-  --ring: #0f3d2e;
+  /* === Borders === */
+  --border: #eddcd0;
+  --border-strong: #dbc4b4;
+  --input: #eddcd0;
+  --ring: #991b1b;
 
   /* === Semantic Colors === */
   --destructive: #b91c1c;
@@ -172,41 +171,41 @@
   --shadow-lg: 0 12px 32px -4px rgb(26 26 26 / 0.10), 0 4px 12px -4px rgb(26 26 26 / 0.06);
   --shadow-glow: 0 0 0 4px color-mix(in oklch, var(--primary) 12%, transparent);
 
-  /* === Primary Color Scale (Forest Green) === */
-  --primary-50:  #ecf5f0;
-  --primary-100: #d4e6dd;
-  --primary-200: #a9cdbb;
-  --primary-300: #7eb499;
-  --primary-400: #539b77;
-  --primary-500: #2d825a;
-  --primary-600: #0f3d2e;  /* base */
-  --primary-700: #0a2e22;
-  --primary-800: #08241b;
-  --primary-900: #061a14;
+  /* === Primary Color Scale (Tết Crimson) === */
+  --primary-50:  #fef2f2;
+  --primary-100: #fee2e2;
+  --primary-200: #fecaca;
+  --primary-300: #fca5a5;
+  --primary-400: #f87171;
+  --primary-500: #ef4444;
+  --primary-600: #dc2626;
+  --primary-700: #b91c1c;
+  --primary-800: #991b1b;  /* base */
+  --primary-900: #7f1d1d;
 
-  /* === Accent Color Scale (Sunset Orange) === */
-  --accent-50:  #fdf5ef;
-  --accent-100: #fbe8d8;
-  --accent-200: #f6d0b1;
-  --accent-300: #f1b88a;
-  --accent-400: #ec9f63;
-  --accent-500: #e58745;
-  --accent-600: #d96c3a;  /* base */
-  --accent-700: #c45a2a;
-  --accent-800: #a84a20;
-  --accent-900: #8a3c1a;
+  /* === Accent Color Scale (Hoa Mai Amber) === */
+  --accent-50:  #fffbeb;
+  --accent-100: #fef3c7;
+  --accent-200: #fde68a;
+  --accent-300: #fcd34d;
+  --accent-400: #fbbf24;
+  --accent-500: #f59e0b;
+  --accent-600: #d97706;  /* base */
+  --accent-700: #b45309;
+  --accent-800: #92400e;
+  --accent-900: #78350f;
 
   /* === Gold Color Scale === */
-  --gold-50:  #fdf9e8;
-  --gold-100: #faf0c4;
-  --gold-200: #f5e188;
-  --gold-300: #efd24c;
-  --gold-400: #e0bd2a;
-  --gold-500: #c9a227;  /* base */
-  --gold-600: #a8851f;
-  --gold-700: #876817;
-  --gold-800: #664b0f;
-  --gold-900: #443208;
+  --gold-50:  #fffbeb;
+  --gold-100: #fef3c7;
+  --gold-200: #fde68a;
+  --gold-300: #fcd34d;
+  --gold-400: #fbbf24;
+  --gold-500: #f59e0b;  /* base */
+  --gold-600: #d97706;
+  --gold-700: #b45309;
+  --gold-800: #92400e;
+  --gold-900: #78350f;
 
   /* =====================================================================
      Seat Status Colors
@@ -214,8 +213,8 @@
   --seat-available:        #ffffff;
   --seat-available-border: #cfc7b8;
   --seat-available-text:   #8a8a8a;
-  --seat-selected:         #0f3d2e;
-  --seat-selected-border:  #0f3d2e;
+  --seat-selected:         #991b1b;
+  --seat-selected-border:  #991b1b;
   --seat-selected-text:    #ffffff;
   --seat-occupied:         #f0ece4;
   --seat-occupied-border:  #e5e0d5;
@@ -331,7 +330,7 @@
 }
 
 /* =========================================================================
-   Dark Mode — Mekong Night
+   Dark Mode — Vé Tàu Tết Night
    ========================================================================= */
 .dark {
   --background: #0d1117;
@@ -460,7 +459,7 @@
 }
 
 /* =========================================================================
-   Components — Mekong Line Pattern Library
+   Components — Vé Tàu Tết Pattern Library
    ========================================================================= */
 
 @layer components {

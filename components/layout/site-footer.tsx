@@ -33,22 +33,23 @@ export function SiteFooter() {
           <div className="space-y-5">
             <BrandMark size="lg" />
             <p className="max-w-sm text-sm leading-relaxed text-ink-muted">
-              Nền tảng đặt vé tàu đường sắt Việt Nam hiện đại. Kết nối hàng trăm
-              chuyến Bắc – Trung – Nam với trải nghiệm minh bạch, ấm áp và tin cậy.
+              Hệ thống đặt vé tàu Tết 2026 trực tuyến chính thức. Đồng hành cùng
+              hàng triệu người con xa quê trên hành trình trở về mái ấm gia đình đón
+              Tết Ất Tỵ sum vầy và ấm áp.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary">
                 <TrainFront className="size-3" />
-                {STATIONS.length} ga phủ sóng
+                {STATIONS.length} ga phủ sóng Tết
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1.5 text-xs font-medium text-accent">
-                VNPay
+                Thanh toán VNPay
               </span>
             </div>
           </div>
 
           {/* Links */}
-          <FooterColumn title="Đặt vé" links={footerLinks.booking} />
+          <FooterColumn title="Đặt vé Tết" links={footerLinks.booking} />
           <FooterColumn title="Hỗ trợ" links={footerLinks.support} />
 
           {/* Contact */}
@@ -59,15 +60,15 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-3.5">
               <li className="flex items-start gap-3 text-sm text-ink-muted">
                 <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span>1900 0000 (24/7)</span>
+                <span>1900 1520 (Hỗ trợ vé Tết 24/7)</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-ink-muted">
                 <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span>support@mekongline.vn</span>
+                <span>hotro@vetautet.app</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-ink-muted">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span>265 Nguyễn Trãi, Hà Nội</span>
+                <span>Ga Hà Nội & Ga Sài Gòn</span>
               </li>
             </ul>
           </div>
@@ -75,10 +76,10 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 pt-8 sm:flex-row sm:items-center">
           <p className="text-xs text-ink-subtle">
-            © 2026 Mekong Line. Đã đăng ký bản quyền.
+            © 2026 Vé Tàu Tết (vetautet.app). Đã đăng ký bản quyền.
           </p>
           <p className="text-xs font-medium tracking-wide text-ink-subtle">
-            Thiết kế cho hành trình đường sắt Việt Nam
+            Xuân Ất Tỵ 2026 — Đoàn Viên Sum Vầy
           </p>
         </div>
       </div>

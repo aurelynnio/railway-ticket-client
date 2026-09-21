@@ -44,13 +44,13 @@ export default function TicketsPage() {
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
             <span className="h-px w-10 bg-accent" />
-            Danh mục
+            Lịch tàu Tết 2026
           </span>
           <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Vé tàu đang mở bán
+            Vé tàu Tết đang mở bán
           </h1>
           <p className="mt-2 max-w-xl text-base text-ink-muted">
-            Tất cả các chuyến tàu hiện có thể đặt vé trực tuyến.
+            Tất cả các chuyến tàu Tết Nguyên đán 2026 hiện có thể đặt chỗ và thanh toán trực tuyến.
           </p>
         </div>
       </div>

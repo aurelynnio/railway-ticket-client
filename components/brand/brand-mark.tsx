@@ -31,7 +31,7 @@ export function BrandMark({
         "group inline-flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg",
         className
       )}
-      aria-label="Mekong Line"
+      aria-label="Vé Tàu Tết 2026"
     >
       <span
         className={cn(
@@ -40,15 +40,15 @@ export function BrandMark({
         )}
       >
         <TrainFront className="size-[60%]" strokeWidth={1.75} />
-        <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full bg-accent ring-2 ring-background" />
+        <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full bg-gold ring-2 ring-background" />
       </span>
       {showText && (
         <span className="flex flex-col leading-none">
-          <span className={cn("font-display font-semibold tracking-tight text-ink", s.text)}>
-            Mekong Line
+          <span className={cn("font-display font-bold tracking-tight text-ink", s.text)}>
+            Vé Tàu Tết
           </span>
-          <span className={cn("mt-1 font-medium uppercase tracking-[0.2em] text-ink-muted", s.sub)}>
-            Vietnam Railways
+          <span className={cn("mt-1 font-semibold uppercase tracking-[0.18em] text-accent", s.sub)}>
+            Xuân Ất Tỵ 2026
           </span>
         </span>
       )}
