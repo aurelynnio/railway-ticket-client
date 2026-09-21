@@ -51,6 +51,15 @@ export default function AdminVouchersPage() {
   const [isBroadcastOpen, setIsBroadcastOpen] = useState(false);
 
   // Create Voucher Form
+  const defaultDates = useMemo(() => {
+    const now = new Date();
+    const nextMonth = new Date(now.getTime() + 30 * 86400000);
+    return {
+      validFrom: now.toISOString().slice(0, 16),
+      validTo: nextMonth.toISOString().slice(0, 16),
+    };
+  }, []);
+
   const createForm = useForm<z.infer<typeof createVoucherSchema>>({
     resolver: zodResolver(createVoucherSchema),
     defaultValues: {
@@ -62,8 +71,8 @@ export default function AdminVouchersPage() {
       maxDiscount: "100000",
       minOrderAmount: "200000",
       usageLimit: "100",
-      validFrom: new Date().toISOString().slice(0, 16),
-      validTo: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 16),
+      validFrom: defaultDates.validFrom,
+      validTo: defaultDates.validTo,
     },
     mode: "onTouched",
   });
@@ -235,7 +244,7 @@ export default function AdminVouchersPage() {
               ) : vouchers.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="p-8 text-center text-ink-muted">
-                    Chưa có mã khuyến mãi nào. Hãy bấm "Tạo Voucher Mới" để bắt đầu!
+                    Chưa có mã khuyến mãi nào. Hãy bấm &quot;Tạo Voucher Mới&quot; để bắt đầu!
                   </td>
                 </tr>
               ) : (
