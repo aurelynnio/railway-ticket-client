@@ -42,9 +42,21 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vé Tàu Tết 2026 — Đặt vé tàu Tết Ất Tỵ trực tuyến | vetautet.app",
+  title: {
+    default: "Vé Tàu Tết 2026 — Đặt vé trực tuyến",
+    template: "%s | Vé Tàu Tết 2026",
+  },
   description:
     "Hệ thống đặt vé tàu Tết Ất Tỵ 2026 trực tuyến chính thức. Giữ chỗ siêu tốc, chọn ghế ưng ý, thanh toán an toàn qua VNPay, xuất vé điện tử tức thì.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="trainBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B91C1C"/>
+      <stop offset="100%" stop-color="#7F1D1D"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect width="64" height="64" rx="15" fill="url(#trainBg)"/>
+
+  <!-- Train Body Outline -->
+  <path d="M22 13 C22 13 25 11 32 11 C39 11 42 13 42 13 C45.5 14 47.5 17 47.5 21 L47.5 41 C47.5 45 44.5 48 40.5 48 L23.5 48 C19.5 48 16.5 45 16.5 41 L16.5 21 C16.5 17 18.5 14 22 13 Z" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Train Windshield -->
+  <path d="M21 18 H43 C44.5 18 45.5 19 45.5 20.5 V27 C45.5 28.5 44.5 29.5 43 29.5 H21 C19.5 29.5 18.5 28.5 18.5 27 V20.5 C18.5 19 19.5 18 21 18 Z" fill="#FFFFFF" fill-opacity="0.25" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- Golden Headlights -->
+  <circle cx="23" cy="38" r="3" fill="url(#goldGlow)"/>
+  <circle cx="41" cy="38" r="3" fill="url(#goldGlow)"/>
+
+  <!-- Center Grille Bar -->
+  <line x1="29" y1="38" x2="35" y2="38" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Track / Cowcatcher -->
+  <line x1="18" y1="53" x2="46" y2="53" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="23" y1="48" x2="19" y2="53" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <line x1="41" y1="48" x2="45" y2="53" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Festive Golden Dot at Bottom-Right -->
+  <circle cx="53" cy="53" r="4.5" fill="url(#goldGlow)" stroke="#7F1D1D" stroke-width="1.5"/>
+</svg>

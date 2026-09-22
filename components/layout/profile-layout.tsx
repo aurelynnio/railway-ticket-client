@@ -139,13 +139,13 @@ export function ProfileLayout({
             <div className="flex items-center gap-4 sm:gap-6">
               {/* Avatar with Golden Ring */}
               <div className="relative shrink-0">
-                <div className="flex size-20 sm:size-24 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 via-gold to-amber-600 p-0.5 shadow-2xl">
-                  <div className="flex size-full items-center justify-center rounded-[14px] bg-primary text-2xl sm:text-3xl font-bold font-display text-white">
+                <div className="flex size-20 sm:size-24 items-center justify-center rounded-full bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-500 p-1 shadow-2xl ring-4 ring-gold/20">
+                  <div className="flex size-full items-center justify-center rounded-full bg-primary text-3xl sm:text-4xl font-bold font-display text-white shadow-inner select-none">
                     {username.charAt(0).toUpperCase()}
                   </div>
                 </div>
                 <div
-                  className="absolute -bottom-1 -right-1 flex size-6 sm:size-7 items-center justify-center rounded-full bg-card shadow-md text-emerald-600 border border-border"
+                  className="absolute bottom-0 right-0 flex size-6 sm:size-7 items-center justify-center rounded-full bg-card shadow-md text-emerald-600 border-2 border-primary"
                   title={isVerified ? "Tài khoản đã xác minh" : "Chưa xác minh email"}
                 >
                   {isVerified ? (
