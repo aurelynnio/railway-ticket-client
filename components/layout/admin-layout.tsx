@@ -64,6 +64,7 @@ export function AdminLayout({
   const [collapsed, setCollapsed] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
   const [searchFilter, setSearchFilter] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const isActive = (href: string) =>
     href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
@@ -444,23 +445,63 @@ export function AdminLayout({
 
       {/* Quick Command / Navigation Dialog */}
       {commandOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-4 pt-20 backdrop-blur-sm animate-in fade-in">
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-4 pt-20 backdrop-blur-sm animate-in fade-in"
+          onClick={() => setCommandOpen(false)}
+        >
           <div
             className="w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-card shadow-2xl animate-in zoom-in-95"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center border-b border-border px-4 py-3">
-              <Search className="size-4 text-ink-muted mr-3 shrink-0" />
+            <div className="flex items-center border-b border-border px-4 py-3.5">
+              <Search className="size-4.5 text-ink-muted mr-3 shrink-0" />
               <input
                 autoFocus
                 placeholder="Nhập tên trang hoặc thao tác cần tìm..."
                 value={searchFilter}
-                onChange={(e) => setSearchFilter(e.target.value)}
-                className="w-full bg-transparent text-sm text-ink outline-none placeholder:text-ink-muted"
+                onChange={(e) => {
+                  setSearchFilter(e.target.value);
+                  setSelectedIndex(0);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    setSelectedIndex((prev) =>
+                      prev < filteredLinks.length - 1 ? prev + 1 : 0
+                    );
+                  } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    setSelectedIndex((prev) =>
+                      prev > 0 ? prev - 1 : filteredLinks.length - 1
+                    );
+                  } else if (e.key === "Enter") {
+                    e.preventDefault();
+                    const target = filteredLinks[selectedIndex];
+                    if (target) {
+                      setCommandOpen(false);
+                      router.push(target.href);
+                    }
+                  }
+                }}
+                className="w-full bg-transparent text-sm text-ink placeholder:text-ink-muted border-none p-0 outline-none ring-0 ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none"
+                style={{ outline: "none", boxShadow: "none", border: "none" }}
               />
+              {searchFilter && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchFilter("");
+                    setSelectedIndex(0);
+                  }}
+                  className="mr-2 rounded px-1.5 py-0.5 text-xs text-ink-muted hover:text-ink hover:bg-muted transition-colors"
+                >
+                  Xóa
+                </button>
+              )}
               <kbd
                 onClick={() => setCommandOpen(false)}
-                className="cursor-pointer rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle"
+                className="cursor-pointer rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle hover:bg-muted/80 transition-colors"
+                title="Đóng (ESC)"
               >
                 ESC
               </kbd>
@@ -472,31 +513,59 @@ export function AdminLayout({
                 </p>
               ) : (
                 <div className="space-y-1">
-                  {filteredLinks.map((link) => (
+                  {filteredLinks.map((link, idx) => (
                     <Link
                       key={link.href + link.label}
                       href={link.href}
                       onClick={() => setCommandOpen(false)}
-                      className="flex items-center justify-between rounded-lg px-3 py-2.5 text-xs text-ink hover:bg-muted transition-colors group"
+                      className={cn(
+                        "flex items-center justify-between rounded-lg px-3 py-2.5 text-xs text-ink transition-colors group",
+                        idx === selectedIndex
+                          ? "bg-primary text-primary-foreground font-medium shadow-xs"
+                          : "hover:bg-muted"
+                      )}
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="flex size-7 items-center justify-center rounded-md bg-muted text-ink-muted group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div
+                          className={cn(
+                            "flex size-7 items-center justify-center rounded-md transition-colors shrink-0",
+                            idx === selectedIndex
+                              ? "bg-primary-foreground/15 text-primary-foreground"
+                              : "bg-muted text-ink-muted group-hover:bg-primary group-hover:text-primary-foreground"
+                          )}
+                        >
                           <link.icon className="size-3.5" />
                         </div>
-                        <div>
-                          <p className="font-semibold text-ink">{link.label}</p>
-                          <p className="text-[10px] text-ink-muted">{link.group}</p>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-semibold truncate">{link.label}</p>
+                          <p
+                            className={cn(
+                              "text-[10px] truncate",
+                              idx === selectedIndex ? "text-primary-foreground/80" : "text-ink-muted"
+                            )}
+                          >
+                            {link.group}
+                          </p>
                         </div>
                       </div>
-                      <ArrowRight className="size-3.5 text-ink-muted opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ArrowRight
+                        className={cn(
+                          "size-3.5 shrink-0 transition-opacity",
+                          idx === selectedIndex ? "opacity-100" : "opacity-0 group-hover:opacity-100 text-ink-muted"
+                        )}
+                      />
                     </Link>
                   ))}
                 </div>
               )}
             </div>
-            <div className="border-t border-border bg-muted/30 px-4 py-2 text-[11px] text-ink-muted flex justify-between">
-              <span>Vé Tàu Tết 2026 Admin</span>
-              <span>Dùng phím <kbd className="font-mono">ESC</kbd> để đóng</span>
+            <div className="border-t border-border bg-muted/30 px-4 py-2 text-[11px] text-ink-muted flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span>Dùng phím <kbd className="font-mono font-medium">↑</kbd> <kbd className="font-mono font-medium">↓</kbd></span>
+                <span>•</span>
+                <span><kbd className="font-mono font-medium">Enter</kbd> để chọn</span>
+              </div>
+              <span><kbd className="font-mono font-medium">ESC</kbd> để đóng</span>
             </div>
           </div>
         </div>
