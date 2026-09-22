@@ -256,10 +256,10 @@ export function AdminLayout({
               href={item.href}
               title={collapsed ? item.label : undefined}
               className={cn(
-                "group flex h-9 items-center gap-2.5 rounded-lg text-xs font-medium transition-colors",
+                "group flex h-9 items-center rounded-lg text-xs font-medium transition-colors",
                 collapsed
-                  ? "size-9 justify-center p-0 mx-auto"
-                  : "px-2.5",
+                  ? "size-8 justify-center p-0 mx-auto"
+                  : "px-2.5 gap-2.5",
                 isActive(item.href)
                   ? "bg-primary text-primary-foreground shadow-xs font-semibold"
                   : "text-ink-muted hover:bg-muted hover:text-ink"
@@ -283,10 +283,10 @@ export function AdminLayout({
           {/* User Profile summary */}
           <div
             className={cn(
-              "flex items-center gap-2 rounded-lg transition-colors",
+              "flex items-center rounded-lg transition-colors",
               collapsed
                 ? "size-8 justify-center p-0 mx-auto"
-                : "border border-border/50 bg-muted/40 p-1.5"
+                : "border border-border/50 bg-muted/40 p-1.5 gap-2"
             )}
             title={collapsed ? `${session.email} (Quản trị viên)` : undefined}
           >
@@ -314,8 +314,8 @@ export function AdminLayout({
             target="_blank"
             title={collapsed ? "Xem website bán vé" : undefined}
             className={cn(
-              "flex h-8 items-center gap-2 rounded-lg text-xs font-medium text-ink-muted hover:bg-muted hover:text-ink transition-colors",
-              collapsed ? "size-8 justify-center p-0 mx-auto" : "px-2"
+              "flex h-8 items-center rounded-lg text-xs font-medium text-ink-muted hover:bg-muted hover:text-ink transition-colors",
+              collapsed ? "size-8 justify-center p-0 mx-auto" : "px-2 gap-2"
             )}
           >
             <ExternalLink className="size-3.5 shrink-0" />
@@ -328,7 +328,7 @@ export function AdminLayout({
             size="sm"
             className={cn(
               "text-ink-muted hover:text-destructive hover:bg-destructive/10 h-8",
-              collapsed ? "size-8 justify-center p-0 mx-auto" : "w-full justify-start px-2 text-xs"
+              collapsed ? "size-8 justify-center p-0 mx-auto" : "w-full justify-start px-2 text-xs gap-2"
             )}
             disabled={logout.isPending}
             title={collapsed ? "Đăng xuất" : undefined}
@@ -343,7 +343,7 @@ export function AdminLayout({
               })
             }
           >
-            <LogOut className="size-3.5 mr-2 shrink-0" />
+            <LogOut className="size-3.5 shrink-0" />
             {!collapsed && <span>Đăng xuất</span>}
           </Button>
         </div>
