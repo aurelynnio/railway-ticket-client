@@ -68,12 +68,40 @@ export function AdminLayout({
   const isActive = (href: string) =>
     href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
 
-  // Keyboard shortcut Ctrl+K or Cmd+K to open Quick Command
+  // Restore saved sidebar preference
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("admin_sidebar_collapsed");
+      if (saved !== null) {
+        setCollapsed(saved === "true");
+      }
+    } catch {
+      // Ignore
+    }
+  }, []);
+
+  const toggleCollapse = () => {
+    setCollapsed((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem("admin_sidebar_collapsed", String(next));
+      } catch {
+        // Ignore
+      }
+      return next;
+    });
+  };
+
+  // Keyboard shortcut Ctrl+K/Cmd+K (Quick Command) and Ctrl+B/Cmd+B (Toggle Sidebar)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setCommandOpen((v) => !v);
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "b") {
+        e.preventDefault();
+        toggleCollapse();
       }
       if (e.key === "Escape") {
         setCommandOpen(false);
@@ -177,79 +205,72 @@ export function AdminLayout({
       {/* Sidebar */}
       <aside
         className={cn(
-          "hidden shrink-0 flex-col bg-card border-r border-border transition-all duration-300 xl:flex",
-          collapsed ? "w-[72px]" : "w-64"
+          "sticky top-0 z-20 hidden h-screen shrink-0 flex-col border-r border-border bg-card transition-[width] duration-200 ease-in-out lg:flex",
+          collapsed ? "w-14" : "w-52"
         )}
       >
         {/* Brand */}
         <div
           className={cn(
-            "flex h-16 items-center border-b border-border/60",
-            collapsed ? "justify-center px-0" : "px-6 justify-between"
+            "flex h-14 items-center border-b border-border/60 transition-all",
+            collapsed ? "justify-center px-0" : "justify-between px-3"
           )}
         >
-          {!collapsed ? (
-            <Link href="/admin" className="flex items-center gap-2.5">
-              <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-                <TrainFront className="size-4.5" />
-              </span>
-              <div className="flex flex-col">
-                <span className="font-display text-sm font-bold tracking-tight text-ink">
+          <Link
+            href="/admin"
+            className={cn("flex items-center gap-2 min-w-0", collapsed && "justify-center")}
+            title="Vé Tàu Tết - Admin Portal"
+          >
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-xs">
+              <TrainFront className="size-4" />
+            </span>
+            {!collapsed && (
+              <div className="flex flex-col min-w-0">
+                <span className="font-display text-xs font-bold tracking-tight text-ink truncate leading-tight">
                   Vé Tàu Tết
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-accent">
+                <span className="text-[9px] font-semibold uppercase tracking-wider text-accent leading-none">
                   Admin Portal
                 </span>
               </div>
-            </Link>
-          ) : (
-            <span className="font-display text-base font-bold text-primary">VTT</span>
+            )}
+          </Link>
+          {!collapsed && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-7 text-ink-muted hover:text-ink shrink-0"
+              onClick={toggleCollapse}
+              title="Thu gọn sidebar (Ctrl+B)"
+            >
+              <PanelLeftClose className="size-3.5" />
+            </Button>
           )}
         </div>
 
-        {/* Admin user info summary */}
-        {!collapsed && (
-          <div className="mx-3 mt-3 rounded-lg border border-border/80 bg-muted/30 p-3">
-            <div className="flex items-center gap-2.5">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">
-                {session.email?.charAt(0).toUpperCase()}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-xs font-semibold text-ink" title={session.email}>
-                  {session.email}
-                </p>
-                <div className="mt-0.5 flex items-center gap-1">
-                  <span className="size-1.5 rounded-full bg-emerald-500" />
-                  <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
-                    Quản trị viên
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Nav */}
-        <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+        <nav className="flex-1 space-y-0.5 overflow-y-auto px-2 py-2.5">
           {sidebarNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               title={collapsed ? item.label : undefined}
               className={cn(
-                "flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors",
-                collapsed && "justify-center px-0",
+                "group flex h-9 items-center gap-2.5 rounded-lg text-xs font-medium transition-colors",
+                collapsed
+                  ? "size-9 justify-center p-0 mx-auto"
+                  : "px-2.5",
                 isActive(item.href)
-                  ? "bg-primary text-primary-foreground shadow-sm font-semibold"
+                  ? "bg-primary text-primary-foreground shadow-xs font-semibold"
                   : "text-ink-muted hover:bg-muted hover:text-ink"
               )}
             >
-              <item.icon className="size-4 shrink-0" />
+              <item.icon className="size-4 shrink-0 transition-transform group-hover:scale-105" />
               {!collapsed && (
                 <>
-                  <span className="flex-1">{item.label}</span>
+                  <span className="flex-1 truncate">{item.label}</span>
                   {isActive(item.href) && (
-                    <span className="size-1.5 rounded-full bg-gold" />
+                    <span className="size-1.5 rounded-full bg-gold shrink-0" />
                   )}
                 </>
               )}
@@ -257,26 +278,57 @@ export function AdminLayout({
           ))}
         </nav>
 
-        {/* Footer shortcuts */}
-        <div className="border-t border-border/60 p-3 space-y-1">
+        {/* Footer shortcuts & user info */}
+        <div className="border-t border-border/60 p-2 space-y-1">
+          {/* User Profile summary */}
+          <div
+            className={cn(
+              "flex items-center gap-2 rounded-lg transition-colors",
+              collapsed
+                ? "size-8 justify-center p-0 mx-auto"
+                : "border border-border/50 bg-muted/40 p-1.5"
+            )}
+            title={collapsed ? `${session.email} (Quản trị viên)` : undefined}
+          >
+            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-[11px]">
+              {session.email?.charAt(0).toUpperCase()}
+            </div>
+            {!collapsed && (
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[11px] font-semibold text-ink leading-tight" title={session.email}>
+                  {session.email}
+                </p>
+                <div className="flex items-center gap-1">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  <span className="text-[9px] font-medium text-emerald-600 dark:text-emerald-400">
+                    Quản trị viên
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Quick link: Website */}
           <Link
             href="/"
             target="_blank"
-            title={collapsed ? "Xem website" : undefined}
+            title={collapsed ? "Xem website bán vé" : undefined}
             className={cn(
-              "flex h-9 items-center gap-2.5 rounded-lg px-3 text-xs font-medium text-ink-muted hover:bg-muted hover:text-ink transition-colors",
-              collapsed && "justify-center px-0"
+              "flex h-8 items-center gap-2 rounded-lg text-xs font-medium text-ink-muted hover:bg-muted hover:text-ink transition-colors",
+              collapsed ? "size-8 justify-center p-0 mx-auto" : "px-2"
             )}
           >
             <ExternalLink className="size-3.5 shrink-0" />
-            {!collapsed && <span>Xem website bán vé</span>}
+            {!collapsed && <span className="truncate">Xem website</span>}
           </Link>
+
+          {/* Logout */}
           <Button
             variant="ghost"
             size="sm"
             className={cn(
-              "text-ink-muted hover:text-destructive hover:bg-destructive/10 h-9",
-              collapsed ? "size-9 justify-center p-0" : "w-full justify-start text-xs"
+              "text-ink-muted hover:text-destructive hover:bg-destructive/10 h-8",
+              collapsed ? "size-8 justify-center p-0 mx-auto" : "w-full justify-start px-2 text-xs"
             )}
             disabled={logout.isPending}
             title={collapsed ? "Đăng xuất" : undefined}
@@ -291,7 +343,7 @@ export function AdminLayout({
               })
             }
           >
-            <LogOut className="size-3.5 mr-2" />
+            <LogOut className="size-3.5 mr-2 shrink-0" />
             {!collapsed && <span>Đăng xuất</span>}
           </Button>
         </div>
@@ -300,24 +352,24 @@ export function AdminLayout({
       {/* Main Container */}
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Top Header */}
-        <header className="sticky top-0 z-10 flex h-16 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur-xl sm:px-6 lg:px-8">
+        <header className="sticky top-0 z-10 flex h-14 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur-xl sm:px-6">
           {/* Collapse toggle */}
           <Button
             variant="ghost"
             size="icon"
-            className="hidden xl:flex text-ink-muted hover:text-ink"
-            onClick={() => setCollapsed(!collapsed)}
-            title={collapsed ? "Mở rộng sidebar" : "Thu gọn sidebar"}
+            className="hidden lg:flex size-8 text-ink-muted hover:text-ink shrink-0"
+            onClick={toggleCollapse}
+            title={collapsed ? "Mở rộng sidebar (Ctrl+B)" : "Thu gọn sidebar (Ctrl+B)"}
           >
             {collapsed ? (
-              <PanelLeft className="size-4.5" />
+              <PanelLeft className="size-4" />
             ) : (
-              <PanelLeftClose className="size-4.5" />
+              <PanelLeftClose className="size-4" />
             )}
           </Button>
 
           <div className="min-w-0 flex-1">
-            <h1 className="font-display text-lg font-bold tracking-tight text-ink sm:text-xl">
+            <h1 className="font-display text-base font-bold tracking-tight text-ink sm:text-lg">
               {title}
             </h1>
             {description && (
@@ -332,7 +384,7 @@ export function AdminLayout({
             <button
               type="button"
               onClick={() => setCommandOpen(true)}
-              className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-ink-muted shadow-sm hover:border-primary/50 hover:text-ink transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-border bg-card px-2.5 py-1 text-xs text-ink-muted shadow-xs hover:border-primary/50 hover:text-ink transition-colors"
             >
               <Search className="size-3.5 text-ink-muted" />
               <span>Tìm nhanh...</span>
@@ -343,23 +395,23 @@ export function AdminLayout({
             <Button
               variant="outline"
               size="icon"
-              className="sm:hidden"
+              className="sm:hidden size-8"
               onClick={() => setCommandOpen(true)}
             >
-              <Search className="size-4" />
+              <Search className="size-3.5" />
             </Button>
             {actions}
           </div>
         </header>
 
         {/* Mobile Horizontal Nav */}
-        <nav className="flex gap-1 overflow-x-auto border-b border-border bg-card px-4 py-2 xl:hidden">
+        <nav className="flex gap-1 overflow-x-auto border-b border-border bg-card px-3 py-1.5 lg:hidden">
           {sidebarNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
+                "flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-colors",
                 isActive(item.href)
                   ? "bg-primary text-primary-foreground font-semibold"
                   : "text-ink-muted hover:bg-muted"
@@ -372,7 +424,7 @@ export function AdminLayout({
         </nav>
 
         {/* Main Body */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 p-4 sm:p-5 lg:p-6">
           <div className="mx-auto max-w-7xl space-y-6">{children}</div>
         </main>
       </div>
