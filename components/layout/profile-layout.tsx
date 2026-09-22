@@ -224,12 +224,12 @@ export function ProfileLayout({
       </section>
 
       {/* Overlapping KPI Metric Stats Cards */}
-      <section className="-mt-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative z-10 -mt-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {/* Card 1: Tickets */}
           <Link
             href="/profile/tickets"
-            className="group block rounded-2xl border border-border bg-card p-4 shadow-md transition-all hover:border-primary/50 hover:shadow-lg"
+            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Vé tàu đã mua</span>
@@ -249,7 +249,7 @@ export function ProfileLayout({
           {/* Card 2: Orders */}
           <Link
             href="/profile/orders"
-            className="group block rounded-2xl border border-border bg-card p-4 shadow-md transition-all hover:border-primary/50 hover:shadow-lg"
+            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Đơn hàng</span>
@@ -269,7 +269,7 @@ export function ProfileLayout({
           {/* Card 3: Notifications */}
           <Link
             href="/profile/notifications"
-            className="group block rounded-2xl border border-border bg-card p-4 shadow-md transition-all hover:border-primary/50 hover:shadow-lg"
+            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Thông báo mới</span>
@@ -292,7 +292,7 @@ export function ProfileLayout({
           {/* Card 4: Security */}
           <Link
             href="/profile#security"
-            className="group block rounded-2xl border border-border bg-card p-4 shadow-md transition-all hover:border-primary/50 hover:shadow-lg"
+            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Bảo mật tài khoản</span>
