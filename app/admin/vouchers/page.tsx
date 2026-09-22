@@ -81,8 +81,8 @@ export default function AdminVouchersPage() {
   const broadcastForm = useForm<z.infer<typeof broadcastMarketingSchema>>({
     resolver: zodResolver(broadcastMarketingSchema),
     defaultValues: {
-      subject: "🎉 Ưu đãi đặc biệt từ Vietrail!",
-      body: "Chào bạn, nhân dịp tuần lễ tri ân khách hàng, Vietrail gửi tặng bạn mã giảm giá khi đặt vé tàu hỏa trực tuyến.",
+      subject: "🧧 Lộc xuân đoàn viên — Ưu đãi Vé Tàu Tết 2026!",
+      body: "Chào bạn, nhân dịp Tết Nguyên Đán 2026 sum vầy, Vé Tàu Tết gửi tặng bạn mã ưu đãi đặc biệt khi đặt vé tàu hỏa trực tuyến.",
       voucherCode: "",
     },
     mode: "onTouched",
@@ -365,7 +365,7 @@ export default function AdminVouchersPage() {
                     </Label>
                     <Input
                       id="code"
-                      placeholder="VD: VIETRAIL50"
+                      placeholder="VD: TET2026, XUANATTY"
                       {...createForm.register("code")}
                       className="mt-1 font-mono uppercase font-bold"
                       aria-invalid={Boolean(createForm.formState.errors.code)}
