@@ -249,17 +249,22 @@ export function AdminLayout({
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 space-y-0.5 overflow-y-auto px-2 py-2.5">
+        <nav
+          className={cn(
+            "flex-1 space-y-0.5 overflow-y-auto px-2 py-2.5",
+            collapsed && "flex flex-col items-center"
+          )}
+        >
           {sidebarNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               title={collapsed ? item.label : undefined}
               className={cn(
-                "group flex h-9 items-center rounded-lg text-xs font-medium transition-colors",
+                "group rounded-lg text-xs font-medium transition-colors",
                 collapsed
-                  ? "size-8 justify-center p-0 mx-auto"
-                  : "px-2.5 gap-2.5",
+                  ? "flex size-8 items-center justify-center p-0"
+                  : "flex h-9 items-center px-2.5 gap-2.5",
                 isActive(item.href)
                   ? "bg-primary text-primary-foreground shadow-xs font-semibold"
                   : "text-ink-muted hover:bg-muted hover:text-ink"
@@ -279,14 +284,19 @@ export function AdminLayout({
         </nav>
 
         {/* Footer shortcuts & user info */}
-        <div className="border-t border-border/60 p-2 space-y-1">
+        <div
+          className={cn(
+            "border-t border-border/60 p-2 space-y-1",
+            collapsed && "flex flex-col items-center"
+          )}
+        >
           {/* User Profile summary */}
           <div
             className={cn(
-              "flex items-center rounded-lg transition-colors",
+              "rounded-lg transition-colors",
               collapsed
-                ? "size-8 justify-center p-0 mx-auto"
-                : "border border-border/50 bg-muted/40 p-1.5 gap-2"
+                ? "flex size-8 items-center justify-center p-0"
+                : "flex items-center border border-border/50 bg-muted/40 p-1.5 gap-2"
             )}
             title={collapsed ? `${session.email} (Quản trị viên)` : undefined}
           >
@@ -314,8 +324,10 @@ export function AdminLayout({
             target="_blank"
             title={collapsed ? "Xem website bán vé" : undefined}
             className={cn(
-              "flex h-8 items-center rounded-lg text-xs font-medium text-ink-muted hover:bg-muted hover:text-ink transition-colors",
-              collapsed ? "size-8 justify-center p-0 mx-auto" : "px-2 gap-2"
+              "rounded-lg text-xs font-medium text-ink-muted hover:bg-muted hover:text-ink transition-colors",
+              collapsed
+                ? "flex size-8 items-center justify-center p-0"
+                : "flex h-8 items-center px-2 gap-2"
             )}
           >
             <ExternalLink className="size-3.5 shrink-0" />
@@ -323,12 +335,13 @@ export function AdminLayout({
           </Link>
 
           {/* Logout */}
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
+            type="button"
             className={cn(
-              "text-ink-muted hover:text-destructive hover:bg-destructive/10 h-8",
-              collapsed ? "size-8 justify-center p-0 mx-auto" : "w-full justify-start px-2 text-xs gap-2"
+              "rounded-lg text-xs font-medium text-ink-muted hover:text-destructive hover:bg-destructive/10 transition-colors",
+              collapsed
+                ? "flex size-8 items-center justify-center p-0"
+                : "flex h-8 w-full items-center px-2 gap-2"
             )}
             disabled={logout.isPending}
             title={collapsed ? "Đăng xuất" : undefined}
@@ -345,7 +358,7 @@ export function AdminLayout({
           >
             <LogOut className="size-3.5 shrink-0" />
             {!collapsed && <span>Đăng xuất</span>}
-          </Button>
+          </button>
         </div>
       </aside>
 
