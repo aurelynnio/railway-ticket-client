@@ -25,13 +25,10 @@ import {
   ExternalLink,
   Plus,
   Home,
-  CheckCircle2,
 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthSession, useLogout } from "@/hooks/auth.hook";
 import { cn } from "@/lib/utils";
 

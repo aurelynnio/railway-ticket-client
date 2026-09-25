@@ -8,10 +8,8 @@ import {
   Ticket,
   ShoppingCart,
   Bell,
-  Shield,
   ShieldCheck,
   LogOut,
-  ExternalLink,
   Sparkles,
   TrainFront,
   CheckCircle2,
@@ -24,7 +22,6 @@ import {
 import { AppLayout } from "@/components/layout/app-layout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthSession, useLogout } from "@/hooks/auth.hook";
 import { useUnreadNotificationCount } from "@/hooks/notification.hook";
@@ -44,7 +41,6 @@ interface ProfileLayoutProps {
 export function ProfileLayout({
   children,
   title,
-  description,
   actions,
 }: ProfileLayoutProps) {
   const pathname = usePathname();

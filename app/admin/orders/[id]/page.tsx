@@ -302,7 +302,7 @@ export default function AdminOrderDetailPage() {
                   className="w-full justify-start gap-2 text-xs"
                 >
                   <Hourglass className="size-3.5 text-amber-600" />
-                  Chuyển sang "Chờ thanh toán"
+                  Chuyển sang &quot;Chờ thanh toán&quot;
                 </Button>
               )}
 

@@ -13,3 +13,4 @@ export default function NotificationsLayoutWrapper({
 }) {
   return <>{children}</>;
 }
+

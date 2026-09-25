@@ -444,7 +444,7 @@ export default function AdminTicketItemsPage() {
 
         {items.length === 0 ? (
           <div className="p-12 text-center text-sm text-ink-muted">
-            Chưa có hạng vé nào. Hãy bấm <b>"Thêm toa / Hạng vé"</b> ở trên để tạo toa đầu tiên!
+            Chưa có hạng vé nào. Hãy bấm <b>&quot;Thêm toa / Hạng vé&quot;</b> ở trên để tạo toa đầu tiên!
           </div>
         ) : (
           <Table>

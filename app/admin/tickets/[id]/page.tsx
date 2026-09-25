@@ -539,7 +539,7 @@ export default function AdminTicketDetailPage() {
                       <div className="pt-2">
                         {allSeats.length === 0 ? (
                           <p className="text-xs text-ink-muted py-4 text-center">
-                            Toa này chưa cấu hình danh sách ghế. Hãy vào "Quản lý toa & hạng vé" để cấu hình.
+                            Toa này chưa cấu hình danh sách ghế. Hãy vào &quot;Quản lý toa &amp; hạng vé&quot; để cấu hình.
                           </p>
                         ) : (
                           <div className="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 gap-1.5 max-h-60 overflow-y-auto p-1">
