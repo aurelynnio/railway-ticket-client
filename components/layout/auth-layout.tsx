@@ -33,11 +33,8 @@ export function AuthLayout({
 }) {
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Left brand panel */}
-      <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 p-12 text-primary-foreground lg:flex">
-        {/* Decorative */}
-        <div className="absolute -right-20 -top-20 size-72 rounded-full bg-accent/20 blur-3xl" />
-        <div className="absolute -bottom-32 -left-16 size-80 rounded-full bg-gold/15 blur-3xl" />
+      {/* Left brand panel — flat colour, no gradient / no glow */}
+      <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-primary p-12 text-primary-foreground lg:flex">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -54,7 +51,6 @@ export function AuthLayout({
         <div className="relative space-y-6">
           <div className="space-y-4">
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">
-              <span className="h-px w-10 bg-gold/60" />
               Vé Tàu Tết 2026
             </span>
             <h1 className="font-display text-4xl font-semibold leading-[1.15] tracking-tight">
@@ -65,12 +61,12 @@ export function AuthLayout({
             </p>
           </div>
 
-          {/* Route decoration */}
-          <div className="flex items-center gap-3 pt-4">
+          {/* Route decoration — connected dots, no dashed rules */}
+          <div className="flex items-center justify-between pt-4">
             <span className="size-2.5 rounded-full bg-gold" />
-            <div className="h-px flex-1 border-t border-dashed border-white/30" />
+            <span className="size-1.5 rounded-full bg-white/25" />
             <span className="size-2.5 rounded-full bg-accent" />
-            <div className="h-px flex-1 border-t border-dashed border-white/30" />
+            <span className="size-1.5 rounded-full bg-white/25" />
             <span className="size-2.5 rounded-full bg-white/60" />
           </div>
           <div className="flex justify-between text-xs text-primary-foreground/50">

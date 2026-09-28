@@ -25,7 +25,7 @@ const tabsListVariants = cva(
     variants: {
       variant: {
         default: "h-10 gap-1 rounded-lg bg-muted p-1 text-muted-foreground",
-        line: "w-full gap-0 bg-transparent",
+        line: "w-full gap-1 bg-transparent",
       },
     },
     defaultVariants: {
@@ -58,12 +58,11 @@ function TabsTrigger({
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors duration-150",
-        "text-ink-muted hover:text-ink",
-        "data-[state=active]:text-ink",
-        /* Underline indicator for line variant */
-        "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-200 data-[state=active]:after:scale-x-100",
-        "focus-visible:outline-none focus-visible:bg-muted/50",
+        "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-3 text-sm font-medium transition-colors duration-150",
+        "text-ink-muted hover:bg-muted hover:text-ink",
+        /* Active state is a filled tint — the underline rule was removed */
+        "data-[state=active]:bg-primary-soft data-[state=active]:font-semibold data-[state=active]:text-primary",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&_svg]:size-4 [&_svg]:shrink-0",
         className,

@@ -200,17 +200,17 @@ export function AdminLayout({
 
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Sidebar */}
+      {/* Sidebar — separated by surface tint, not a rule */}
       <aside
         className={cn(
-          "sticky top-0 z-20 hidden h-screen shrink-0 flex-col border-r border-border bg-card transition-[width] duration-200 ease-in-out lg:flex",
+          "sticky top-0 z-20 hidden h-screen shrink-0 flex-col bg-card transition-[width] duration-200 ease-in-out lg:flex",
           collapsed ? "w-14" : "w-52"
         )}
       >
         {/* Brand */}
         <div
           className={cn(
-            "flex h-14 items-center border-b border-border/60 transition-all",
+            "flex h-14 items-center transition-all",
             collapsed ? "justify-center px-0" : "justify-between px-3"
           )}
         >
@@ -219,7 +219,7 @@ export function AdminLayout({
             className={cn("flex items-center gap-2 min-w-0", collapsed && "justify-center")}
             title="Vé Tàu Tết - Admin Portal"
           >
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-xs">
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <TrainFront className="size-4" />
             </span>
             {!collapsed && (
@@ -264,7 +264,7 @@ export function AdminLayout({
                   ? "flex size-8 items-center justify-center p-0"
                   : "flex h-9 items-center px-2.5 gap-2.5",
                 isActive(item.href)
-                  ? "bg-primary text-primary-foreground shadow-xs font-semibold"
+                  ? "bg-primary text-primary-foreground font-semibold"
                   : "text-ink-muted hover:bg-muted hover:text-ink"
               )}
             >
@@ -284,7 +284,7 @@ export function AdminLayout({
         {/* Footer shortcuts & user info */}
         <div
           className={cn(
-            "border-t border-border/60 p-2 space-y-1",
+            "p-2 space-y-1",
             collapsed && "flex flex-col items-center"
           )}
         >
@@ -294,7 +294,7 @@ export function AdminLayout({
               "rounded-lg transition-colors",
               collapsed
                 ? "flex size-8 items-center justify-center p-0"
-                : "flex items-center border border-border/50 bg-muted/40 p-1.5 gap-2"
+                : "flex items-center bg-muted p-1.5 gap-2"
             )}
             title={collapsed ? `${session.email} (Quản trị viên)` : undefined}
           >
@@ -363,7 +363,7 @@ export function AdminLayout({
       {/* Main Container */}
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Top Header */}
-        <header className="sticky top-0 z-10 flex h-14 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur-xl sm:px-6">
+        <header className="sticky top-0 z-10 flex h-14 items-center gap-3 bg-background/90 px-4 backdrop-blur-xl sm:px-6">
           {/* Collapse toggle */}
           <Button
             variant="ghost"
@@ -395,11 +395,11 @@ export function AdminLayout({
             <button
               type="button"
               onClick={() => setCommandOpen(true)}
-              className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-border bg-card px-2.5 py-1 text-xs text-ink-muted shadow-xs hover:border-primary/50 hover:text-ink transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 rounded-lg bg-secondary px-2.5 py-1 text-xs text-ink-muted hover:bg-surface-3 hover:text-ink transition-colors"
             >
               <Search className="size-3.5 text-ink-muted" />
               <span>Tìm nhanh...</span>
-              <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle">
+              <kbd className="rounded bg-background px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle">
                 Ctrl K
               </kbd>
             </button>
@@ -416,7 +416,7 @@ export function AdminLayout({
         </header>
 
         {/* Mobile Horizontal Nav */}
-        <nav className="flex gap-1 overflow-x-auto border-b border-border bg-card px-3 py-1.5 lg:hidden">
+        <nav className="flex gap-1 overflow-x-auto bg-card px-3 py-1.5 lg:hidden">
           {sidebarNav.map((item) => (
             <Link
               key={item.href}
@@ -447,10 +447,10 @@ export function AdminLayout({
           onClick={() => setCommandOpen(false)}
         >
           <div
-            className="w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-card shadow-2xl animate-in zoom-in-95"
+            className="w-full max-w-lg overflow-hidden rounded-2xl bg-card shadow-overlay animate-in zoom-in-95"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center border-b border-border px-4 py-3.5">
+            <div className="flex items-center px-4 py-3.5">
               <Search className="size-4.5 text-ink-muted mr-3 shrink-0" />
               <input
                 autoFocus
@@ -497,7 +497,7 @@ export function AdminLayout({
               )}
               <kbd
                 onClick={() => setCommandOpen(false)}
-                className="cursor-pointer rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle hover:bg-muted/80 transition-colors"
+                className="cursor-pointer rounded bg-secondary px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle hover:bg-surface-3 transition-colors"
                 title="Đóng (ESC)"
               >
                 ESC
@@ -518,7 +518,7 @@ export function AdminLayout({
                       className={cn(
                         "flex items-center justify-between rounded-lg px-3 py-2.5 text-xs text-ink transition-colors group",
                         idx === selectedIndex
-                          ? "bg-primary text-primary-foreground font-medium shadow-xs"
+                          ? "bg-primary text-primary-foreground font-medium"
                           : "hover:bg-muted"
                       )}
                     >
@@ -556,7 +556,7 @@ export function AdminLayout({
                 </div>
               )}
             </div>
-            <div className="border-t border-border bg-muted/30 px-4 py-2 text-[11px] text-ink-muted flex items-center justify-between">
+            <div className="mt-1 bg-muted/60 px-4 py-2 text-[11px] text-ink-muted flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <span>Dùng phím <kbd className="font-mono font-medium">↑</kbd> <kbd className="font-mono font-medium">↓</kbd></span>
                 <span>•</span>

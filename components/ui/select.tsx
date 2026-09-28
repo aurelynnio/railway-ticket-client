@@ -48,11 +48,11 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "flex h-11 w-full items-center justify-between gap-2 rounded-lg bg-card px-4 py-2.5 text-sm text-foreground whitespace-nowrap shadow-sm transition-all duration-200 outline-none select-none",
-        "hover:shadow-md",
-        "focus-visible:ring-4 focus-visible:ring-ring/10 focus-visible:shadow-md",
+        "flex h-11 w-full items-center justify-between gap-2 rounded-lg bg-surface-2 px-4 py-2.5 text-sm text-foreground whitespace-nowrap transition-colors duration-200 outline-none select-none",
+        "hover:bg-surface-3",
+        "focus-visible:bg-card focus-visible:ring-2 focus-visible:ring-ring/60",
         "disabled:cursor-not-allowed disabled:opacity-60",
-        "aria-invalid:ring-4 aria-invalid:ring-destructive/10",
+        "aria-invalid:bg-destructive-soft aria-invalid:ring-2 aria-invalid:ring-destructive/50",
         "data-placeholder:text-ink-subtle",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
@@ -80,7 +80,7 @@ function SelectContent({
       <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(
-          "relative z-[100] max-h-96 min-w-36 overflow-hidden rounded-xl bg-popover p-1 text-popover-foreground shadow-lg",
+          "relative z-[100] max-h-96 min-w-36 overflow-hidden rounded-xl bg-popover p-1 text-popover-foreground shadow-overlay",
           "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           className
@@ -153,7 +153,7 @@ function SelectSeparator({
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn("-mx-1 my-1 h-px bg-border", className)}
+      className={cn("-mx-1 my-1.5 h-0", className)}
       {...props}
     />
   )

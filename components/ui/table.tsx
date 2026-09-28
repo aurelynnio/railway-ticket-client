@@ -35,7 +35,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
       data-slot="table-header"
-      className={cn("bg-muted/55", className)}
+      className={cn("bg-muted/70", className)}
       {...props}
     />
   )
@@ -45,7 +45,7 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
       data-slot="table-body"
-      className={cn("[&_tr:nth-child(even)]:bg-muted/30", className)}
+      className={cn("[&_tr:nth-child(even)]:bg-muted/45", className)}
       {...props}
     />
   )
@@ -56,7 +56,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
     <tfoot
       data-slot="table-footer"
       className={cn(
-        "bg-muted/55 font-medium [&>tr]:last:border-b-0",
+        "bg-muted/70 font-medium",
         className
       )}
       {...props}
@@ -69,7 +69,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
     <tr
       data-slot="table-row"
       className={cn(
-        "transition-colors hover:bg-muted/45 has-aria-expanded:bg-muted data-[state=selected]:bg-muted",
+        "transition-colors hover:bg-muted/70 has-aria-expanded:bg-muted data-[state=selected]:bg-muted",
         className
       )}
       {...props}

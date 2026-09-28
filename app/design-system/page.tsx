@@ -62,7 +62,7 @@ function Section({
   return (
     <section id={id} className="scroll-mt-24">
       <div className="mb-8 flex items-start gap-4">
-        <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border bg-card text-primary shadow-sm">
+        <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary">
           <Icon className="size-5" />
         </div>
         <div>
@@ -92,14 +92,14 @@ function Swatch({
   textColor?: string;
 }) {
   return (
-    <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div className="group overflow-hidden rounded-xl bg-card transition-colors duration-200 hover:bg-secondary">
       <div
         className={`flex h-20 items-end p-3 ${textColor}`}
         style={{ backgroundColor: hex }}
       >
         <span className="font-mono text-xs font-medium opacity-90">{hex}</span>
       </div>
-      <div className="border-t border-border px-3 py-2.5">
+      <div className="px-3 py-2.5">
         <p className="text-sm font-medium text-ink">{name}</p>
         <p className="font-mono text-[11px] text-ink-subtle">{variable}</p>
       </div>
@@ -120,7 +120,7 @@ function TokenRow({
   preview?: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between border-b border-border py-3 last:border-0">
+    <div className="flex items-center justify-between rounded-lg px-3 py-3 even:bg-muted/50">
       <div>
         <p className="text-sm font-medium text-ink">{label}</p>
         <p className="font-mono text-xs text-ink-subtle">{value}</p>
@@ -137,13 +137,9 @@ export default function DesignSystemPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* ===== Hero ===== */}
-      <header className="relative overflow-hidden border-b border-border texture-paper">
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute -top-24 -right-24 size-96 rounded-full bg-accent/10 blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 size-96 rounded-full bg-primary/10 blur-3xl" />
-        </div>
+      <header className="relative overflow-hidden texture-paper">
         <div className="app-container relative py-20">
-          <div className="eyebrow">Design System v2.0</div>
+          <div className="eyebrow">Design System v3.0 · Minimal</div>
           <h1 className="max-w-3xl">
             Vé Tàu Tết 2026
             <span className="gradient-text-warm"> — Hệ thống thiết kế</span>
@@ -172,11 +168,10 @@ export default function DesignSystemPage() {
             <Badge variant="outline">React 19</Badge>
           </div>
         </div>
-        <div className="transit-line" />
       </header>
 
       {/* ===== Nav anchors ===== */}
-      <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+      <nav className="sticky top-0 z-50 bg-background/85 backdrop-blur-xl">
         <div className="app-container flex gap-1 overflow-x-auto py-3">
           {[
             { id: "colors", label: "Màu sắc", icon: Palette },
@@ -456,23 +451,23 @@ export default function DesignSystemPage() {
               <CardDescription>Từ H1 đến H6, tối ưu cho đọc trên màn hình.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="border-b border-border pb-4">
+              <div className="pb-4">
                 <span className="kicker">H1</span>
                 <h1 className="mt-1">Hành trình đường sắt Bắc-Nam</h1>
               </div>
-              <div className="border-b border-border pb-4">
+              <div className="pb-4">
                 <span className="kicker">H2</span>
                 <h2 className="mt-1">Tìm chuyến tàu phù hợp</h2>
               </div>
-              <div className="border-b border-border pb-4">
+              <div className="pb-4">
                 <span className="kicker">H3</span>
                 <h3 className="mt-1">Chọn ghế ngồi</h3>
               </div>
-              <div className="border-b border-border pb-4">
+              <div className="pb-4">
                 <span className="kicker">H4</span>
                 <h4 className="mt-1">Thông tin hành khách</h4>
               </div>
-              <div className="border-b border-border pb-4">
+              <div className="pb-4">
                 <span className="kicker">H5</span>
                 <h5 className="mt-1">Chi tiết thanh toán</h5>
               </div>
@@ -573,20 +568,20 @@ export default function DesignSystemPage() {
           id="cards"
           icon={Square}
           title="Thẻ (Card)"
-          description="5 biến thể: viền, nổi, phẳng, tối giản, kính cong."
+          description="5 biến thể bề mặt: nổi, nâng, phẳng, tối giản, kính mờ — không viền, không đổ bóng."
         >
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Card variant="outlined" padding="lg">
               <CardHeader>
                 <Badge>Outlined</Badge>
-                <CardTitle>Thẻ viền</CardTitle>
+                <CardTitle>Thẻ nổi</CardTitle>
                 <CardDescription>
-                  Dùng cho nội dung thông thường, tập trung vào nội dung.
+                  Bề mặt trắng nổi trên nền giấy — phân cấp bằng tương phản màu.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-ink-muted">
-                  Đây là một thẻ có viền nhẹ, phù hợp cho hầu hết các trường hợp.
+                  Bề mặt mặc định cho hầu hết nội dung. Không viền, không bóng.
                 </p>
               </CardContent>
               <CardFooter>
@@ -599,15 +594,20 @@ export default function DesignSystemPage() {
             <Card variant="elevated" padding="lg">
               <CardHeader>
                 <Badge variant="accent">Elevated</Badge>
-                <CardTitle>Thẻ nổi</CardTitle>
+                <CardTitle>Thẻ chìm</CardTitle>
                 <CardDescription>
-                  Có đổ bóng nhẹ, nhấn mạnh nội dung quan trọng.
+                  Tấm chìm trên bề mặt surface-3 — nhóm nội dung phụ bên trong thẻ.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-3">
                 <p className="text-sm text-ink-muted">
-                  Thẻ nổi với shadow tinh tế, phù hợp cho các yếu tố cần chú ý.
+                  Thay cho "độ nổi", biến thể này lùi xuống một tầng bề mặt.
                 </p>
+                <div className="rounded-lg bg-card p-3">
+                  <p className="text-xs text-ink-subtle">
+                    Nội dung nổi (surface-1) đặt bên trong tấm chìm (surface-3).
+                  </p>
+                </div>
               </CardContent>
               <CardFooter>
                 <Button variant="link-accent" size="sm">
@@ -647,7 +647,6 @@ export default function DesignSystemPage() {
             </Card>
 
             <Card variant="glass" padding="lg" className="relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/10 to-gold/20" />
               <div className="relative">
                 <CardHeader>
                   <Badge variant="gold">Glass</Badge>
@@ -664,17 +663,17 @@ export default function DesignSystemPage() {
               </div>
             </Card>
 
-            <Card variant="elevated" padding="lg" interactive>
+            <Card variant="outlined" padding="lg" interactive>
               <CardHeader>
                 <Badge variant="success">Interactive</Badge>
                 <CardTitle>Thẻ tương tác</CardTitle>
                 <CardDescription>
-                  Có hiệu ứng hover nâng lên, dùng cho danh sách có thể nhấn.
+                  Hover đổi tầng bề mặt — thay thế cho hiệu ứng nâng/đổ bóng.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-ink-muted">
-                  Di chuột vào thẻ này để thấy hiệu ứng nâng lên và đổ bóng.
+                  Di chuột vào thẻ này để thấy bề mặt chuyển sang tầng chìm hơn.
                 </p>
               </CardContent>
               <CardFooter>
@@ -875,7 +874,7 @@ export default function DesignSystemPage() {
                 ].map((s) => (
                   <div
                     key={s.label}
-                    className="flex items-center justify-between rounded-lg border border-border px-3 py-2"
+                    className="flex items-center justify-between rounded-lg px-3 py-2"
                     style={{ backgroundColor: s.bg }}
                   >
                     <span className="text-sm font-medium" style={{ color: s.color }}>
@@ -908,7 +907,7 @@ export default function DesignSystemPage() {
                 ].map((s) => (
                   <div
                     key={s.label}
-                    className="flex items-center justify-between rounded-lg border border-border px-3 py-2"
+                    className="flex items-center justify-between rounded-lg px-3 py-2"
                     style={{ backgroundColor: s.bg }}
                   >
                     <span className="text-sm font-medium" style={{ color: s.color }}>
@@ -940,7 +939,7 @@ export default function DesignSystemPage() {
                 ].map((s) => (
                   <div
                     key={s.label}
-                    className="flex items-center justify-between rounded-lg border border-border px-3 py-2"
+                    className="flex items-center justify-between rounded-lg px-3 py-2"
                     style={{ backgroundColor: s.bg }}
                   >
                     <span className="text-sm font-medium" style={{ color: s.color }}>
@@ -966,19 +965,18 @@ export default function DesignSystemPage() {
             <CardContent>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
                 {[
-                  { label: "Còn trống", bg: "var(--seat-available)", border: "var(--seat-available-border)", text: "var(--seat-available-text)" },
-                  { label: "Đã chọn", bg: "var(--seat-selected)", border: "var(--seat-selected-border)", text: "var(--seat-selected-text)" },
-                  { label: "Đã đặt", bg: "var(--seat-occupied)", border: "var(--seat-occupied-border)", text: "var(--seat-occupied-text)" },
-                  { label: "Nữ", bg: "var(--seat-female)", border: "var(--seat-female-border)", text: "var(--seat-female-text)" },
-                  { label: "Tiếp cận", bg: "var(--seat-accessible)", border: "var(--seat-accessible-border)", text: "var(--seat-accessible-text)" },
-                  { label: "Cao cấp", bg: "var(--seat-premium)", border: "var(--seat-premium-border)", text: "var(--seat-premium-text)" },
+                  { label: "Còn trống", bg: "var(--seat-available)", text: "var(--seat-available-text)" },
+                  { label: "Đã chọn", bg: "var(--seat-selected)", text: "var(--seat-selected-text)" },
+                  { label: "Đã đặt", bg: "var(--seat-occupied)", text: "var(--seat-occupied-text)" },
+                  { label: "Nữ", bg: "var(--seat-female)", text: "var(--seat-female-text)" },
+                  { label: "Tiếp cận", bg: "var(--seat-accessible)", text: "var(--seat-accessible-text)" },
+                  { label: "Cao cấp", bg: "var(--seat-premium)", text: "var(--seat-premium-text)" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
                     <div
-                      className="mx-auto flex size-12 items-center justify-center rounded-lg border-2 text-xs font-bold"
+                      className="mx-auto flex size-12 items-center justify-center rounded-lg text-xs font-bold"
                       style={{
                         backgroundColor: s.bg,
-                        borderColor: s.border,
                         color: s.text,
                       }}
                     >
@@ -997,7 +995,7 @@ export default function DesignSystemPage() {
           id="tokens"
           icon={Ruler}
           title="Design Tokens"
-          description="Các giá trị cơ bản: bo góc, đổ bóng, khoảng cách, độ trong suốt."
+          description="Các giá trị cơ bản: bo góc, bề mặt, khoảng cách và chuyển động."
         >
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Radius */}
@@ -1015,7 +1013,7 @@ export default function DesignSystemPage() {
                 ].map((r) => (
                   <div key={r.label} className="flex items-center gap-4">
                     <div
-                      className={`flex size-14 items-center justify-center border-2 border-border bg-card ${r.size}`}
+                      className={`flex size-14 items-center justify-center bg-muted ${r.size}`}
                     >
                       <span className="font-mono text-[10px] text-ink-muted">{r.label}</span>
                     </div>
@@ -1028,23 +1026,26 @@ export default function DesignSystemPage() {
               </CardContent>
             </Card>
 
-            {/* Shadows */}
+            {/* Surfaces — replaces the former shadow scale */}
             <Card padding="lg">
               <CardHeader>
-                <CardTitle>Đổ bóng (Shadows)</CardTitle>
+                <CardTitle>Phân cấp bề mặt (Surfaces)</CardTitle>
+                <CardDescription>
+                  Không viền, không đổ bóng — độ sâu chỉ đến từ ba tầng bề mặt.
+                  Lớp nổi (dropdown, popover, dialog) là ngoại lệ duy nhất được đổ bóng.
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {[
-                  { label: "xs", value: "0 1px 2px rgba(0,0,0,0.04)", shadow: "shadow-[0_1px_2px_0_rgb(26_26_26/0.04)]" },
-                  { label: "sm", value: "0 1px 3px rgba(0,0,0,0.06)", shadow: "shadow-[0_1px_3px_rgb(26_26_26/0.06),0_1px_2px_rgb(26_26_26/0.04)]" },
-                  { label: "md", value: "0 4px 16px rgba(0,0,0,0.08)", shadow: "shadow-[0_4px_16px_-2px_rgb(26_26_26/0.08),0_2px_6px_-2px_rgb(26_26_26/0.04)]" },
-                  { label: "lg", value: "0 12px 32px rgba(0,0,0,0.10)", shadow: "shadow-[0_12px_32px_-4px_rgb(26_26_26/0.10),0_4px_12px_-4px_rgb(26_26_26/0.06)]" },
+                  { label: "surface-1", value: "Nền nổi — thẻ, panel · #ffffff", swatch: "bg-surface-1" },
+                  { label: "surface-2", value: "Nền chìm — ô nhập, chip · #efe8dc", swatch: "bg-surface-2" },
+                  { label: "surface-3", value: "Trạng thái nhấn — hover · #e4dac9", swatch: "bg-surface-3" },
+                  { label: "background", value: "Nền trang — giấy ấm · #f4efe6", swatch: "bg-background" },
                 ].map((s) => (
                   <div key={s.label} className="flex items-center gap-4">
-                    <div
-                      className={`flex size-14 items-center justify-center rounded-xl bg-card ${s.shadow}`}
-                    >
-                      <span className="font-mono text-[10px] text-ink-muted">{s.label}</span>
+                    {/* Samples are shown on the page surface, as they appear in context */}
+                    <div className="shrink-0 rounded-xl bg-background p-1.5">
+                      <div className={`size-11 rounded-lg ${s.swatch}`} />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-ink">{s.label}</p>
@@ -1104,7 +1105,7 @@ export default function DesignSystemPage() {
       </main>
 
       {/* ===== Footer ===== */}
-      <footer className="border-t border-border bg-card">
+      <footer className="bg-surface-2">
         <div className="app-container py-12">
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
             <div>
@@ -1129,8 +1130,7 @@ export default function DesignSystemPage() {
               </Button>
             </div>
           </div>
-          <div className="mt-8 gradient-divider" />
-          <p className="mt-6 text-center text-xs text-ink-subtle">
+          <p className="mt-10 text-center text-xs text-ink-subtle">
             © 2026 Vé Tàu Tết Design System. Tất cả các quyền được bảo lưu.
           </p>
         </div>

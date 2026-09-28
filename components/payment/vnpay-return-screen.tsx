@@ -110,7 +110,7 @@ export function VnpayReturnScreen({ mode }: { mode: VnpayReturnMode }) {
 
 function VnpayReturnFallback() {
   return (
-    <Card variant="elevated" padding="lg" className="w-full text-center">
+    <Card variant="outlined" padding="lg" className="w-full text-center">
       <Skeleton className="mx-auto size-20 rounded-full" />
       <Skeleton className="mx-auto mt-6 h-8 w-2/3" />
       <Skeleton className="mx-auto mt-3 h-4 w-full" />
@@ -356,7 +356,7 @@ function StatusCard({
   children?: ReactNode;
 }) {
   return (
-    <Card variant="elevated" padding="lg" className="w-full text-center">
+    <Card variant="outlined" padding="lg" className="w-full text-center">
       <div
         className={`mx-auto flex size-20 items-center justify-center rounded-full ${iconClassName}`}
       >
@@ -389,7 +389,7 @@ function PaymentDetails({
   orderId?: string;
 }) {
   return (
-    <dl className="mt-6 space-y-2 rounded-xl border border-border/60 bg-muted/40 px-4 py-3 text-left text-sm">
+    <dl className="mt-6 space-y-2 rounded-xl bg-muted/60 px-4 py-3 text-left text-sm">
       <div className="flex items-center justify-between gap-3">
         <dt className="text-ink-muted">Trạng thái</dt>
         <dd>

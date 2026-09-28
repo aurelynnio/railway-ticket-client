@@ -120,7 +120,7 @@ export function Calendar({
                 outside && "text-ink-subtle/40",
                 !outside && !selectedDay && !disabled && "text-ink hover:bg-muted",
                 today && !selectedDay && "bg-primary-soft font-semibold text-primary",
-                selectedDay && "bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover",
+                selectedDay && "bg-primary text-primary-foreground hover:bg-primary-hover",
                 disabled && "cursor-not-allowed text-ink-subtle/30 hover:bg-transparent"
               )}
             >

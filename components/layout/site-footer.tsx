@@ -26,7 +26,7 @@ const footerLinks = {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-card/40 shadow-[inset_0_1px_0_rgba(0,0,0,0.03)]">
+    <footer className="bg-surface-2">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
           {/* Brand */}

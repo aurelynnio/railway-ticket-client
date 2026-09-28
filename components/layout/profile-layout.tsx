@@ -104,11 +104,8 @@ export function ProfileLayout({
 
   return (
     <AppLayout>
-      {/* Top Festive Hero Cover */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-hover to-amber-950 text-white">
-        {/* Decorative Golden Ambient Orbs */}
-        <div className="pointer-events-none absolute -right-20 -top-20 size-80 rounded-full bg-gold/15 blur-3xl" />
-        <div className="pointer-events-none absolute -left-20 bottom-0 size-72 rounded-full bg-primary-soft/10 blur-2xl" />
+      {/* Top Festive Hero Cover — flat colour, no gradient / glow */}
+      <section className="relative overflow-hidden bg-primary text-white">
 
         <div className="relative mx-auto max-w-7xl px-4 pt-10 pb-20 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
@@ -133,15 +130,15 @@ export function ProfileLayout({
           {/* User Hero Banner Row */}
           <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-4 sm:gap-6">
-              {/* Avatar with Golden Ring */}
+              {/* Avatar */}
               <div className="relative shrink-0">
-                <div className="flex size-20 sm:size-24 items-center justify-center rounded-full bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-500 p-1 shadow-2xl ring-4 ring-gold/20">
-                  <div className="flex size-full items-center justify-center rounded-full bg-primary text-3xl sm:text-4xl font-bold font-display text-white shadow-inner select-none">
+                <div className="flex size-20 sm:size-24 items-center justify-center rounded-full bg-primary-foreground/10 p-1">
+                  <div className="flex size-full items-center justify-center rounded-full bg-primary text-3xl sm:text-4xl font-bold font-display text-white select-none">
                     {username.charAt(0).toUpperCase()}
                   </div>
                 </div>
                 <div
-                  className="absolute bottom-0 right-0 flex size-6 sm:size-7 items-center justify-center rounded-full bg-card shadow-md text-emerald-600 border-2 border-primary"
+                  className="absolute bottom-0 right-0 flex size-6 sm:size-7 items-center justify-center rounded-full bg-card text-emerald-600"
                   title={isVerified ? "Tài khoản đã xác minh" : "Chưa xác minh email"}
                 >
                   {isVerified ? (
@@ -188,7 +185,7 @@ export function ProfileLayout({
             {/* Quick Actions for Admins / Logout */}
             <div className="flex flex-wrap items-center gap-2.5">
               {isAdmin && (
-                <Button asChild variant="gold" size="sm" className="shadow-md">
+                <Button asChild variant="gold" size="sm">
                   <Link href="/admin">
                     <TrainFront className="size-4 mr-1.5" />
                     Vào Cổng Quản trị
@@ -198,7 +195,7 @@ export function ProfileLayout({
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
+                className="bg-white/10 text-white hover:bg-white/20 hover:text-white"
                 disabled={logout.isPending}
                 onClick={() =>
                   logout.mutate(undefined, {
@@ -225,7 +222,7 @@ export function ProfileLayout({
           {/* Card 1: Tickets */}
           <Link
             href="/profile/tickets"
-            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
+            className="group relative block rounded-2xl bg-card p-4 transition-colors hover:bg-secondary"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Vé tàu đã mua</span>
@@ -245,7 +242,7 @@ export function ProfileLayout({
           {/* Card 2: Orders */}
           <Link
             href="/profile/orders"
-            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
+            className="group relative block rounded-2xl bg-card p-4 transition-colors hover:bg-secondary"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Đơn hàng</span>
@@ -265,7 +262,7 @@ export function ProfileLayout({
           {/* Card 3: Notifications */}
           <Link
             href="/profile/notifications"
-            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
+            className="group relative block rounded-2xl bg-card p-4 transition-colors hover:bg-secondary"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Thông báo mới</span>
@@ -288,7 +285,7 @@ export function ProfileLayout({
           {/* Card 4: Security */}
           <Link
             href="/profile#security"
-            className="group relative block rounded-2xl border border-border bg-card p-4 shadow-lg shadow-black/5 transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-0.5"
+            className="group relative block rounded-2xl bg-card p-4 transition-colors hover:bg-secondary"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-ink-muted">Bảo mật tài khoản</span>
@@ -309,8 +306,8 @@ export function ProfileLayout({
 
       {/* Navigation Tabs Bar */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="flex items-center justify-between border-b border-border">
-          <nav className="-mb-px flex gap-2 sm:gap-4 overflow-x-auto" aria-label="Profile Tabs">
+        <div className="flex items-center justify-between">
+          <nav className="flex gap-1.5 overflow-x-auto rounded-xl bg-muted p-1" aria-label="Profile Tabs">
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
@@ -318,10 +315,10 @@ export function ProfileLayout({
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "group flex shrink-0 items-center gap-2 border-b-2 py-3.5 px-3 text-xs sm:text-sm font-medium transition-all",
+                    "group flex shrink-0 items-center gap-2 rounded-lg px-3 py-2.5 text-xs sm:text-sm font-medium transition-colors",
                     active
-                      ? "border-primary text-primary font-bold"
-                      : "border-transparent text-ink-muted hover:border-border hover:text-ink"
+                      ? "bg-card text-primary font-bold"
+                      : "text-ink-muted hover:bg-card/60 hover:text-ink"
                   )}
                 >
                   <item.icon

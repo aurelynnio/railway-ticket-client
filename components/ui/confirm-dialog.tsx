@@ -52,7 +52,7 @@ export function ConfirmDialog({
         <AlertDialogPrimitive.Overlay className="fixed inset-0 z-[1300] bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
         <AlertDialogPrimitive.Content
           className={cn(
-            "fixed left-1/2 top-1/2 z-[1400] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-md bg-card p-6 shadow-xl",
+            "fixed left-1/2 top-1/2 z-[1400] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-card p-6 shadow-overlay",
             "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           )}
         >
@@ -70,7 +70,7 @@ export function ConfirmDialog({
                 type="checkbox"
                 checked={acked}
                 onChange={(event) => setAcked(event.target.checked)}
-                className="mt-0.5 size-4 shrink-0 rounded-sm border-border"
+                className="mt-0.5 size-4 shrink-0 rounded-sm accent-primary"
               />
               <span>{ackLabel}</span>
             </label>

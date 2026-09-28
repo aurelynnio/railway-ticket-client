@@ -63,9 +63,9 @@ export function DatePicker({
           type="button"
           disabled={disabled}
           className={cn(
-            "flex h-11 w-full items-center gap-2 rounded-lg bg-card px-4 py-2.5 text-sm text-foreground shadow-sm transition-all duration-200 outline-none",
-            "hover:shadow-md",
-            "focus-visible:ring-4 focus-visible:ring-ring/10 focus-visible:shadow-md",
+            "flex h-11 w-full items-center gap-2 rounded-lg bg-surface-2 px-4 py-2.5 text-sm text-foreground transition-colors duration-200 outline-none",
+            "hover:bg-surface-3",
+            "focus-visible:bg-card focus-visible:ring-2 focus-visible:ring-ring/60",
             "disabled:cursor-not-allowed disabled:opacity-60",
             "data-[placeholder]:text-ink-subtle",
             className
@@ -95,7 +95,7 @@ export function DatePicker({
           sideOffset={6}
           align="start"
           className={cn(
-            "z-[100] w-[320px] overflow-hidden rounded-xl bg-popover p-0 text-popover-foreground shadow-lg",
+            "z-[100] w-[320px] overflow-hidden rounded-xl bg-popover p-0 text-popover-foreground shadow-overlay",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -108,8 +108,8 @@ export function DatePicker({
             onSelect={handleSelect}
             minDate={minDate}
           />
-          {/* Footer actions — same style as Select */}
-          <div className="flex items-center justify-between border-t border-border/50 px-3 py-2">
+          {/* Footer actions — separated by spacing, not a rule */}
+          <div className="mt-1 flex items-center justify-between px-3 pb-2">
             <Button
               type="button"
               variant="ghost"

@@ -35,7 +35,7 @@ export function BrandMark({
     >
       <span
         className={cn(
-          "relative flex shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-transform group-hover:scale-105",
+          "relative flex shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-transform group-hover:scale-105",
           s.icon
         )}
       >

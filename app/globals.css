@@ -65,10 +65,22 @@
   --radius-lg: 1rem;
   --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
-  --shadow-xs: var(--shadow-xs);
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
+
+  /* Elevation is intentionally removed in the minimal system.
+     Neutralised at the token level so any leftover `shadow-*` utility
+     renders nothing instead of re-introducing depth. */
+  --shadow-2xs: 0 0 #0000;
+  --shadow-xs: 0 0 #0000;
+  --shadow-sm: 0 0 #0000;
+  --shadow-md: 0 0 #0000;
+  --shadow-lg: 0 0 #0000;
+  --shadow-xl: 0 0 #0000;
+  --shadow-2xl: 0 0 #0000;
+  --shadow: 0 0 #0000;
+
+  /* Single documented exception to the flat rule: floating layers
+     (select, popover, dialog, command palette) may carry elevation. */
+  --shadow-overlay: 0 10px 30px -8px rgb(25 23 19 / 0.18), 0 4px 12px -4px rgb(25 23 19 / 0.10);
 }
 
 /* =========================================================================
@@ -105,39 +117,42 @@
   --gold-foreground: #78350f;
 
   /* === Ink — Warm Charcoal === */
-  --ink: #1a1a1a;
-  --ink-muted: #5c5c5c;
-  --ink-subtle: #8a8a8a;
-  --ink-faint: #b0b0b0;
+  --ink: #191713;
+  --ink-muted: #55504a;
+  --ink-subtle: #8a8279;
+  --ink-faint: #b3aaa0;
 
   /* === Background — Warm Paper === */
-  --background: #faf7f2;
-  --foreground: #1a1a1a;
+  --background: #f4efe6;
+  --foreground: #191713;
 
   /* === Card / Surface === */
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #191713;
 
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
+  --popover-foreground: #191713;
 
   --primary-foreground: #ffffff;
 
-  --secondary: #f6efe6;
-  --secondary-foreground: #1a1a1a;
+  --secondary: #f0e9dd;
+  --secondary-foreground: #191713;
 
-  --muted: #f7f1e9;
-  --muted-foreground: #5c5c5c;
+  --muted: #efe8dc;
+  --muted-foreground: #55504a;
 
-  /* === Surface Scale === */
+  /* === Surface Scale — the ONLY separation mechanism ===
+     1 = raised panel (white) · 2 = inset / resting fill · 3 = pressed / deeper */
   --surface-1: #ffffff;
-  --surface-2: #f8f4ed;
-  --surface-3: #efe6da;
+  --surface-2: #efe8dc;
+  --surface-3: #e4dac9;
 
-  /* === Borders === */
-  --border: #eddcd0;
-  --border-strong: #dbc4b4;
-  --input: #eddcd0;
+  /* === Borders — removed by design ===
+     Rules and outlines are replaced by surface tint, spacing and type weight.
+     Focus affordances use the ring tokens below, not borders. */
+  --border: transparent;
+  --border-strong: transparent;
+  --input: #e4dac9;
   --ring: #991b1b;
 
   /* === Semantic Colors === */
@@ -164,12 +179,10 @@
   /* === Geometry — Soft, Approachable === */
   --radius: 0.875rem;
 
-  /* === Shadows — Soft, Warm, Layered === */
-  --shadow-xs: 0 1px 2px 0 rgb(26 26 26 / 0.04);
-  --shadow-sm: 0 1px 3px rgb(26 26 26 / 0.06), 0 1px 2px rgb(26 26 26 / 0.04);
-  --shadow-md: 0 4px 16px -2px rgb(26 26 26 / 0.08), 0 2px 6px -2px rgb(26 26 26 / 0.04);
-  --shadow-lg: 0 12px 32px -4px rgb(26 26 26 / 0.10), 0 4px 12px -4px rgb(26 26 26 / 0.06);
-  --shadow-glow: 0 0 0 4px color-mix(in oklch, var(--primary) 12%, transparent);
+  /* === Shadows — REMOVED ===
+     The minimal direction has no elevation. Depth is expressed through the
+     surface scale (1/2/3), whitespace, type size/weight and colour contrast. */
+  --shadow-glow: 0 0 #0000;
 
   /* === Primary Color Scale (Tết Crimson) === */
   --primary-50:  #fef2f2;
@@ -362,13 +375,15 @@
   --ink: #e8e6e3;
   --ink-muted: #8b949e;
 
-  --surface-1: #161b22;
-  --surface-2: #21262d;
-  --surface-3: #30363d;
+  /* Surface scale carries separation in dark mode too */
+  --surface-1: #1c2229;
+  --surface-2: #242b33;
+  --surface-3: #2f3740;
+  --popover: #242b33;
 
-  --border: #30363d;
-  --border-strong: #484f58;
-  --input: #30363d;
+  --border: transparent;
+  --border-strong: transparent;
+  --input: #2f3740;
   --ring: #4ade80;
 }
 
@@ -405,20 +420,19 @@
     color: var(--foreground);
   }
 
-  /* Typography hierarchy — editorial */
+  /* Typography hierarchy — weight + size carry the structure (no rules/lines) */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display), system-ui, -apple-system, sans-serif;
-    @apply font-semibold tracking-tight text-ink;
+    @apply tracking-tight text-ink;
     text-wrap: balance;
-    letter-spacing: -0.025em;
   }
 
-  h1 { @apply text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] font-semibold; }
-  h2 { @apply text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.15] font-semibold; }
-  h3 { @apply text-[clamp(1.375rem,2.25vw,1.75rem)] leading-[1.25] font-medium; }
-  h4 { @apply text-xl leading-[1.35] font-medium; }
+  h1 { @apply text-[clamp(2.25rem,5vw,4rem)] leading-[1.03] font-bold tracking-[-0.032em]; }
+  h2 { @apply text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.12] font-bold tracking-[-0.026em]; }
+  h3 { @apply text-[clamp(1.375rem,2.25vw,1.75rem)] leading-[1.25] font-semibold tracking-[-0.02em]; }
+  h4 { @apply text-xl leading-[1.35] font-semibold; }
   h5 { @apply text-base leading-[1.5] font-medium; }
-  h6 { @apply text-sm leading-[1.5] font-semibold uppercase tracking-[0.12em]; }
+  h6 { @apply text-sm leading-[1.5] font-semibold uppercase tracking-[0.12em] text-ink-muted; }
 
   p {
     @apply leading-relaxed text-ink-muted;
@@ -442,9 +456,9 @@
     background: var(--ink-subtle);
   }
 
-  /* Focus ring — warm glow */
+  /* Focus ring — the single functional "outline" kept in the system */
   :focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-ring/70;
   }
 
   /* Links */
@@ -473,26 +487,17 @@
   }
 
   .page-band {
-    @apply border border-border bg-card shadow-sm;
+    @apply bg-card;
   }
 
-  /* === Dividers === */
-  .soft-divider {
-    @apply h-px w-full bg-border;
-  }
-
-  .hard-divider {
-    @apply h-px w-full bg-border-strong;
-  }
-
+  /* === Dividers — REMOVED ===
+     Rules are replaced by whitespace, surface tint and type weight.
+     Declared as no-ops so any existing markup collapses instead of drawing a line. */
+  .soft-divider,
+  .hard-divider,
   .gradient-divider {
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--border-strong),
-      transparent
-    );
+    height: 0;
+    background: none;
   }
 
   /* === Page Header === */
@@ -504,43 +509,32 @@
     @apply mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent;
   }
 
-  .eyebrow::before {
-    content: "";
-    @apply block h-px w-8 bg-accent;
-  }
-
   .kicker {
     @apply text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted;
   }
 
-  /* === Pill / Tag === */
+  /* === Pill / Tag — tint only, no outline === */
   .route-pill {
-    @apply inline-flex items-center gap-1.5 border border-primary/15 bg-primary-soft px-2.5 py-1 text-xs font-medium text-primary;
+    @apply inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-2.5 py-1 text-xs font-medium text-primary;
   }
 
   .accent-pill {
-    @apply inline-flex items-center gap-1.5 border border-accent/15 bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent;
+    @apply inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent;
   }
 
   .gold-pill {
-    @apply inline-flex items-center gap-1.5 border border-gold/20 bg-gold-soft px-2.5 py-1 text-xs font-medium text-gold;
+    @apply inline-flex items-center gap-1.5 rounded-full bg-gold-soft px-2.5 py-1 text-xs font-medium text-gold;
   }
 
-  /* === Card hover — subtle lift === */
+  /* === Card hover — surface shift replaces lift + shadow === */
   .card-hover {
-    transition:
-      transform var(--duration-base) var(--ease-standard),
-      box-shadow var(--duration-base) var(--ease-standard),
-      border-color var(--duration-base) var(--ease-standard),
-      background-color var(--duration-base) var(--ease-standard);
+    transition: background-color var(--duration-base) var(--ease-standard);
   }
   .card-hover:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--border-strong);
+    background-color: var(--surface-2);
   }
   .card-hover:active {
-    transform: translateY(-1px);
+    background-color: var(--surface-3);
   }
 
   /* === Button primary === */
@@ -552,7 +546,7 @@
     @apply bg-accent text-accent-foreground hover:bg-accent-hover active:bg-accent-active;
   }
 
-  /* === Ticket notch — premium perforation === */
+  /* === Ticket notch — premium perforation (no outline) === */
   .ticket-notch {
     position: relative;
     padding: 0 0.75rem;
@@ -566,7 +560,6 @@
     height: 1rem;
     border-radius: 9999px;
     background: var(--background);
-    box-shadow: inset 0 0 0 1px var(--border);
     transform: translateY(-50%);
     z-index: 2;
   }
@@ -591,19 +584,13 @@
     color: var(--primary);
   }
 
-  /* === Gradient text === */
+  /* === Emphasis text — solid ink, no gradients === */
   .gradient-text {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 
   .gradient-text-warm {
-    background: linear-gradient(135deg, var(--accent), var(--gold));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--accent);
   }
 
   /* === Surface textures === */
@@ -626,29 +613,15 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   }
 
-  /* === Hero decorative line === */
+  /* === Hero decorative line — removed === */
   .transit-line {
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
-    border-radius: 2px;
+    height: 0;
+    background: none;
   }
 
-  /* === Hand-drawn underline (wavy, imperfect) === */
+  /* === Hand-drawn underline — removed === */
   .hand-underline {
-    position: relative;
     display: inline-block;
-  }
-  .hand-underline::after {
-    content: "";
-    position: absolute;
-    left: -2%;
-    right: -2%;
-    bottom: -0.15em;
-    height: 0.35em;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 25 2, 50 7 T 100 6 T 150 8 T 198 5' fill='none' stroke='%23d96c3a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    opacity: 0.85;
   }
 
   /* === Tilted tag / sticker === */
@@ -672,25 +645,24 @@
     -webkit-text-stroke: 1px color-mix(in oklch, var(--primary) 25%, transparent);
   }
 
-  /* === Stamp effect (rotated bordered box) === */
+  /* === Stamp — tinted pill, no outline / rotation === */
   .stamp {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
     padding: 0.375rem 0.875rem;
-    border: 1.5px solid currentColor;
-    border-radius: 2px;
+    border-radius: 9999px;
+    background: color-mix(in oklch, currentColor 14%, transparent);
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    transform: rotate(-3deg);
   }
 
-  /* === Dashed hand-drawn border === */
+  /* === Dashed outline — replaced by a tinted surface === */
   .hand-border {
-    border: 1.5px dashed var(--border-strong);
-    border-radius: 4px;
+    background: var(--surface-2);
+    border-radius: 0.75rem;
   }
 
   /* === Arrow annotation (curved) === */

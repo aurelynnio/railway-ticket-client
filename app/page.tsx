@@ -95,7 +95,7 @@ export default function HomePage() {
           {/* Left-aligned editorial layout */}
           <div className="max-w-3xl">
             <div className="flex items-center gap-3">
-              <span className="stamp text-gold border-gold">🧧 Mở bán vé Tết 2026</span>
+              <span className="stamp text-gold">🧧 Mở bán vé Tết 2026</span>
               <span className="text-xs font-semibold text-white/80">
                 Xuân Ất Tỵ • Đong đầy yêu thương
               </span>
@@ -130,7 +130,7 @@ export default function HomePage() {
                         setSearchError(null);
                       }}
                       placeholder="Ga đi"
-                      className="bg-white/10 pl-10 text-white shadow-sm [&>svg]:text-white/50 data-[placeholder]:text-white/50"
+                      className="bg-white/10 pl-10 text-white [&>svg]:text-white/50 data-[placeholder]:text-white/50"
                     >
                       <option value="">Ga đi</option>
                       {stations.map((s) => (
@@ -148,7 +148,7 @@ export default function HomePage() {
                       setTo(from);
                       setSearchError(null);
                     }}
-                    className="flex size-11 items-center justify-center rounded-lg bg-white/10 text-white/60 shadow-sm transition-colors hover:bg-white/15 hover:text-white"
+                    className="flex size-11 items-center justify-center rounded-lg bg-white/10 text-white/60 transition-colors hover:bg-white/20 hover:text-white"
                     aria-label="Đổi điểm đi và đến"
                   >
                     <ArrowLeftRight className="size-4" />
@@ -161,7 +161,7 @@ export default function HomePage() {
                         setSearchError(null);
                       }}
                       placeholder="Ga đến"
-                      className="bg-white/10 pl-10 text-white shadow-sm [&>svg]:text-white/50 data-[placeholder]:text-white/50"
+                      className="bg-white/10 pl-10 text-white [&>svg]:text-white/50 data-[placeholder]:text-white/50"
                     >
                       <option value="">Ga đến</option>
                       {stations.map((s) => (
@@ -181,11 +181,11 @@ export default function HomePage() {
                       }}
                       placeholder="Ngày đi"
                       minDate={new Date()}
-                      className="bg-white/10 pl-10 text-white shadow-sm data-[placeholder]:text-white/50 [&>svg]:text-white/50"
+                      className="bg-white/10 pl-10 text-white data-[placeholder]:text-white/50 [&>svg]:text-white/50"
                       icon={<CalendarDays className="size-4 shrink-0 text-white/50" />}
                     />
                   </div>
-                  <Button type="submit" size="lg" variant="accent" className="gap-2 shadow-md bg-accent hover:bg-accent-hover text-white font-semibold">
+                  <Button type="submit" size="lg" variant="accent" className="gap-2 bg-accent hover:bg-accent-hover text-white font-semibold">
                     <Search className="size-4" />
                     <span className="hidden sm:inline">Tìm vé Tết</span>
                   </Button>
@@ -198,22 +198,19 @@ export default function HomePage() {
               </form>
             </Card>
 
-            {/* Stats */}
-            <div className="mt-10 flex flex-wrap items-start gap-x-10 gap-y-4">
+            {/* Stats — separated by whitespace only */}
+            <div className="mt-10 flex flex-wrap items-start gap-x-14 gap-y-6">
               {[
                 { value: "100%", label: "Vé tàu Tết chính hãng" },
                 { value: String(STATIONS.length), label: "Ga tàu kết nối Bắc - Nam" },
                 { value: "24/7", label: "Giữ chỗ & Hỗ trợ xuyên Tết" },
                 { value: "VNPay", label: "Thanh toán an toàn, bảo mật" },
-              ].map((s, i) => (
-                <div key={s.label} className="flex items-start gap-4">
-                  {i > 0 && <span className="mt-1 h-10 w-px bg-white/15" />}
-                  <div>
-                    <p className="font-display text-3xl font-bold tabular-nums text-white sm:text-4xl">
-                      {s.value}
-                    </p>
-                    <p className="mt-0.5 text-xs text-white/70">{s.label}</p>
-                  </div>
+              ].map((s) => (
+                <div key={s.label}>
+                  <p className="font-display text-3xl font-bold tabular-nums text-white sm:text-4xl">
+                    {s.value}
+                  </p>
+                  <p className="mt-1 text-xs text-white/70">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -232,7 +229,6 @@ export default function HomePage() {
               </span>
               <div className="relative">
                 <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-                  <span className="h-px w-10 bg-accent" />
                   🧧 Chuyến tàu Tết tiêu biểu
                 </span>
                 <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
@@ -295,10 +291,10 @@ export default function HomePage() {
 
             {/* Visual card — clean card with stamp */}
             <div className="relative pt-3 pr-3">
-              <Card variant="elevated" padding="lg" className="relative !overflow-visible">
+              <Card variant="outlined" padding="lg" className="relative !overflow-visible">
                 {/* Stamp decoration */}
                 <div className="absolute -right-2 -top-2.5 z-10">
-                  <span className="stamp bg-accent text-white shadow-sm">Nổi bật</span>
+                  <span className="stamp bg-accent text-white">Nổi bật</span>
                 </div>
 
                 <div className="space-y-6">
@@ -325,9 +321,9 @@ export default function HomePage() {
                     <div className="flex flex-1 flex-col items-center px-4">
                       <TrainFront className="size-5 text-accent" />
                       <div className="mt-2 flex w-full items-center gap-1.5">
-                        <span className="size-2.5 shrink-0 rounded-full border-2 border-primary bg-primary-soft" />
-                        <div className="h-0 flex-1 border-t-2 border-dashed border-primary/40" />
-                        <span className="size-2.5 shrink-0 rounded-full border-2 border-primary bg-primary" />
+                        <span className="size-2.5 shrink-0 rounded-full bg-primary/40" />
+                        <div className="h-0.5 flex-1 rounded-full bg-primary/15" />
+                        <span className="size-2.5 shrink-0 rounded-full bg-primary" />
                       </div>
                     </div>
                     <div className="text-right">
@@ -343,7 +339,7 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 border-t border-border pt-4">
+                  <div className="flex flex-wrap gap-1.5 pt-4">
                     {featured.seatClasses?.map((c: string) => (
                       <Badge key={c} variant="outline" className="text-[11px]">
                         {c}
@@ -358,12 +354,11 @@ export default function HomePage() {
       )}
 
       {/* ===== WHY US — Tet benefits ===== */}
-      <section className="border-y border-border bg-card/40">
+      <section className="bg-surface-2/60">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between">
             <div>
               <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-                <span className="h-px w-10 bg-accent" />
                 Đặc quyền vé Tết 2026
               </span>
               <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
@@ -376,7 +371,7 @@ export default function HomePage() {
 
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {/* Card 1 — dark filled */}
-            <div className="rounded-2xl bg-primary p-7 text-primary-foreground shadow-md">
+            <div className="rounded-2xl bg-primary p-7 text-primary-foreground">
               <div className="flex size-12 items-center justify-center rounded-xl bg-white/10">
                 <Ticket className="size-5 text-gold" />
               </div>
@@ -392,8 +387,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Card 2 — outlined with accent border */}
-            <div className="rounded-2xl border-2 border-accent/30 bg-card p-7 shadow-sm">
+            {/* Card 2 — raised surface, emphasis from icon tint */}
+            <div className="rounded-2xl bg-card p-7">
               <div className="flex size-12 items-center justify-center rounded-xl bg-accent-soft text-accent">
                 <ShieldCheck className="size-5" />
               </div>
@@ -410,7 +405,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 3 — gold tinted */}
-            <div className="rounded-2xl border border-gold/30 bg-gold-soft/50 p-7 shadow-sm">
+            <div className="rounded-2xl bg-gold-soft p-7">
               <div className="flex size-12 items-center justify-center rounded-xl bg-gold text-white">
                 <Wallet className="size-5" />
               </div>
@@ -434,7 +429,6 @@ export default function HomePage() {
         <div className="flex items-end justify-between">
           <div>
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-              <span className="h-px w-10 bg-accent" />
               Tuyến cao điểm Tết 2026
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
@@ -452,7 +446,7 @@ export default function HomePage() {
         {tripsQuery.isLoading ? (
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="rounded-2xl border border-border bg-card p-6">
+              <div key={i} className="rounded-2xl bg-card p-6">
                 <Skeleton className="h-6 w-2/3" />
                 <Skeleton className="mt-3 h-4 w-1/2" />
                 <Skeleton className="mt-5 h-10 w-full" />
@@ -494,7 +488,7 @@ export default function HomePage() {
                     </Badge>
                   </div>
 
-                  <div className="my-5 h-px bg-border" />
+                  <div className="my-5 h-px" />
 
                   <div className="relative flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
                     <span className="inline-flex items-center gap-2 text-ink-muted">
@@ -536,9 +530,6 @@ export default function HomePage() {
               backgroundSize: "20px 20px",
             }}
           />
-          {/* Decorative circle outline */}
-          <div className="absolute -right-20 -top-20 size-64 rounded-full border border-white/10" />
-          <div className="absolute -bottom-16 -left-16 size-48 rounded-full border border-white/[0.07]" />
 
           <div className="relative max-w-2xl">
             <span className="stamp text-gold">Bắt đầu ngay</span>
@@ -561,7 +552,7 @@ export default function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                className="bg-white/10 text-white hover:bg-white/20 hover:text-white"
               >
                 <Link href="/route-map">Xem lộ trình</Link>
               </Button>

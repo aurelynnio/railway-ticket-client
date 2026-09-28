@@ -30,7 +30,7 @@ export function SiteHeader() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/90 shadow-sm backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Left: Brand + Nav */}
@@ -42,16 +42,13 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "relative rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+                    "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
                     isActive(item.href)
-                      ? "text-primary"
-                      : "text-ink-muted hover:text-ink hover:bg-muted/60"
+                      ? "bg-primary-soft text-primary"
+                      : "text-ink-muted hover:bg-muted hover:text-ink"
                   )}
                 >
                   {item.label}
-                  {isActive(item.href) && (
-                    <span className="absolute -bottom-[15px] left-1/2 h-[3px] w-6 -translate-x-1/2 rounded-full bg-accent" />
-                  )}
                 </Link>
               ))}
             </nav>
@@ -70,7 +67,7 @@ export function SiteHeader() {
                 <Link href="/notifications" aria-label="Thông báo">
                   <Bell className="size-4 text-ink-muted hover:text-ink" />
                   {unreadCount > 0 && (
-                    <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white shadow">
+                    <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
                       {unreadCount > 99 ? "99+" : unreadCount}
                     </span>
                   )}
@@ -82,7 +79,7 @@ export function SiteHeader() {
               <div className="hidden items-center gap-2 md:flex">
                 <Link
                   href="/profile"
-                  className="flex items-center gap-2.5 rounded-full bg-card py-1.5 pl-1.5 pr-4 shadow-sm transition-colors hover:shadow-md"
+                  className="flex items-center gap-2.5 rounded-full bg-surface-2 py-1.5 pl-1.5 pr-4 transition-colors hover:bg-surface-3"
                 >
                   <span className="flex size-7 items-center justify-center rounded-full bg-primary-soft text-xs font-semibold text-primary">
                     {(session.data.email || "U")[0].toUpperCase()}

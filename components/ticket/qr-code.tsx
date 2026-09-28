@@ -52,7 +52,7 @@ export function TicketQRCode({ value, size = 180, className = "" }: QRCodeProps)
     return (
       <div
         style={{ width: size, height: size }}
-        className={`flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/40 p-4 text-center text-ink-muted ${className}`}
+        className={`flex flex-col items-center justify-center rounded-xl bg-muted/60 p-4 text-center text-ink-muted ${className}`}
       >
         <QrIcon className="size-8 text-ink-subtle" />
         <p className="mt-2 text-xs">Không thể tạo mã QR</p>
@@ -73,7 +73,7 @@ export function TicketQRCode({ value, size = 180, className = "" }: QRCodeProps)
 
   return (
     <div
-      className={`inline-block overflow-hidden rounded-xl border border-border bg-white p-2.5 shadow-sm ${className}`}
+      className={`inline-block overflow-hidden rounded-xl bg-white p-2.5 ${className}`}
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
