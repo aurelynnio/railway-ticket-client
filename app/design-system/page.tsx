@@ -601,7 +601,7 @@ export default function DesignSystemPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <p className="text-sm text-ink-muted">
-                  Thay cho "độ nổi", biến thể này lùi xuống một tầng bề mặt.
+                  Thay cho &quot;độ nổi&quot;, biến thể này lùi xuống một tầng bề mặt.
                 </p>
                 <div className="rounded-lg bg-card p-3">
                   <p className="text-xs text-ink-subtle">

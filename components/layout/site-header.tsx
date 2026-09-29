@@ -7,7 +7,6 @@ import {
   Menu,
   X,
   Search,
-  User,
   LogOut,
   ArrowRight,
   Bell,
