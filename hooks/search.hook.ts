@@ -52,3 +52,47 @@ export function useStationSuggestions(query?: string) {
     },
   });
 }
+
+export function useQuickSearchTrains(query: string, limit = 8) {
+  const trimmed = query.trim();
+  return useQuery({
+    queryKey: ["quick-search-trains", trimmed, limit],
+    queryFn: async () => {
+      try {
+        const res = await instance.get<SearchTripResponse[]>("/search/trains", {
+          params: { q: trimmed || undefined, limit },
+        });
+        if (Array.isArray(res.data)) {
+          return res.data;
+        }
+        if (res.data && Array.isArray((res.data as unknown as { data: SearchTripResponse[] }).data)) {
+          return (res.data as unknown as { data: SearchTripResponse[] }).data;
+        }
+        return [];
+      } catch {
+        // Fallback to /search/trips if /search/trains is unavailable or under migration
+        const fallbackRes = await instance.get<PaginatedResponse<SearchTripResponse>>(
+          "/search/trips",
+          {
+            params: { limit: Math.max(limit, 20) },
+          },
+        );
+        const list = fallbackRes.data?.data ?? [];
+        if (!trimmed) return list.slice(0, limit);
+        const q = trimmed.toLowerCase();
+        return list
+          .filter(
+            (t) =>
+              (t.trainNumber && t.trainNumber.toLowerCase().includes(q)) ||
+              (t.title && t.title.toLowerCase().includes(q)) ||
+              (t.from?.name && t.from.name.toLowerCase().includes(q)) ||
+              (t.from?.code && t.from.code.toLowerCase().includes(q)) ||
+              (t.to?.name && t.to.name.toLowerCase().includes(q)) ||
+              (t.to?.code && t.to.code.toLowerCase().includes(q)),
+          )
+          .slice(0, limit);
+      }
+    },
+    staleTime: 30000,
+  });
+}

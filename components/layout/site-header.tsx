@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { startTransition, useState } from "react";
+import { startTransition, useState, useEffect } from "react";
 import {
   Menu,
   X,
@@ -20,6 +20,7 @@ import {
 
 import { BrandMark } from "@/components/brand/brand-mark";
 import { Button } from "@/components/ui/button";
+import { QuickSearchModal } from "@/components/search/quick-search-modal";
 import { useAuthSession, useLogout } from "@/hooks/auth.hook";
 import { useUnreadNotificationCount } from "@/hooks/notification.hook";
 import { cn } from "@/lib/utils";
@@ -37,7 +38,20 @@ export function SiteHeader() {
   const session = useAuthSession();
   const logout = useLogout();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
   const { data: unreadCount = 0 } = useUnreadNotificationCount(Boolean(session.data));
+
+  // Global keyboard shortcut: Ctrl+K / Cmd+K
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchModalOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -85,20 +99,32 @@ export function SiteHeader() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Quick Search Trigger Pill */}
+            {/* Quick Search Trigger Button (Desktop) */}
             <Button
-              asChild
+              type="button"
               variant="ghost"
               size="sm"
-              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-surface-2/80 hover:bg-surface-3 px-3.5 py-1.5 text-xs text-ink-muted h-9 border border-surface-3/60 transition-all shadow-2xs"
+              onClick={() => setSearchModalOpen(true)}
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-surface-2/80 hover:bg-surface-3 px-3.5 py-1.5 text-xs text-ink-muted h-9 border border-surface-3/60 transition-all shadow-2xs cursor-pointer"
+              aria-label="Mở tìm kiếm chuyến tàu nhanh (Ctrl+K)"
             >
-              <Link href="/search" aria-label="Tìm chuyến tàu">
-                <Search className="size-3.5 text-primary" />
-                <span className="font-normal text-ink-muted">Tìm chuyến tàu...</span>
-                <kbd className="hidden xl:inline-flex items-center rounded bg-card px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle shadow-2xs">
-                  ⌘K
-                </kbd>
-              </Link>
+              <Search className="size-3.5 text-primary" />
+              <span className="font-normal text-ink-muted">Tìm chuyến tàu...</span>
+              <kbd className="hidden xl:inline-flex items-center rounded bg-card px-1.5 py-0.5 text-[10px] font-mono text-ink-subtle shadow-2xs">
+                ⌘K
+              </kbd>
+            </Button>
+
+            {/* Mobile Search Button */}
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="sm:hidden rounded-full size-9 hover:bg-surface-2"
+              onClick={() => setSearchModalOpen(true)}
+              aria-label="Tìm kiếm nhanh"
+            >
+              <Search className="size-4 text-primary" />
             </Button>
 
             {/* Notification Bell (Logged In) */}
@@ -198,7 +224,20 @@ export function SiteHeader() {
       {/* Mobile Drawer Menu */}
       {mobileOpen && (
         <div className="border-t border-surface-3/80 bg-background/95 backdrop-blur-xl lg:hidden animate-fade-in shadow-lg">
-          <div className="mx-auto max-w-7xl space-y-2 px-4 py-5">
+          <div className="mx-auto max-w-7xl space-y-3 px-4 py-5">
+            {/* Mobile quick search trigger */}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                setSearchModalOpen(true);
+              }}
+              className="flex w-full items-center gap-2.5 rounded-xl bg-surface-2 px-3.5 py-2.5 text-xs text-ink-muted border border-surface-3/70 shadow-2xs hover:bg-surface-3 transition-colors text-left"
+            >
+              <Search className="size-4 text-primary" />
+              <span>Tìm chuyến tàu theo số hiệu, tên ga...</span>
+            </button>
+
             {/* Nav list */}
             <div className="space-y-1">
               {navItems.map((item) => {
@@ -289,6 +328,9 @@ export function SiteHeader() {
           </div>
         </div>
       )}
+
+      {/* Quick Search Modal */}
+      <QuickSearchModal open={searchModalOpen} onOpenChange={setSearchModalOpen} />
     </header>
   );
 }
