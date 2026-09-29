@@ -102,7 +102,7 @@ export function QuickSearchModal({ open, onOpenChange }: QuickSearchModalProps) 
         <DialogPrimitive.Content
           onKeyDown={handleKeyDown}
           className={cn(
-            "fixed left-1/2 top-[12%] z-1450 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 overflow-hidden rounded-2xl bg-card border border-surface-3 shadow-overlay",
+            "fixed left-1/2 top-[12%] z-1450 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 overflow-hidden rounded-2xl bg-card border border-surface-3 shadow-overlay focus:outline-none focus-visible:outline-none",
             "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           )}
         >
@@ -125,7 +125,8 @@ export function QuickSearchModal({ open, onOpenChange }: QuickSearchModalProps) 
                 setSelectedIndex(0);
               }}
               placeholder="Tìm theo số hiệu tàu (SE1, SE3...), ga đi, ga đến..."
-              className="ml-3 flex-1 bg-transparent text-sm sm:text-base font-medium text-ink placeholder:text-ink-muted outline-none"
+              className="ml-3 flex-1 bg-transparent text-sm sm:text-base font-medium text-ink placeholder:text-ink-muted border-none p-0 outline-none ring-0 ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none"
+              style={{ outline: "none", boxShadow: "none", border: "none" }}
             />
             {query && (
               <button
