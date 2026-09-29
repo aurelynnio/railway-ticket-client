@@ -44,9 +44,9 @@ export default function RouteMapPage() {
                 <p className="text-xs text-ink-muted">Ga {startStation?.code}</p>
               </div>
               <div className="flex-1 px-4">
-                <div className="relative h-1 rounded-full bg-border">
+                <div className="relative h-1.5 rounded-full bg-surface-3">
                   <div className="absolute inset-y-0 left-0 w-full rounded-full bg-gradient-to-r from-primary via-accent to-gold" />
-                  <span className="absolute left-1/2 top-1/2 flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card shadow-sm">
+                  <span className="absolute left-1/2 top-1/2 flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-card shadow-xs ring-2 ring-primary/20">
                     <TrainFront className="size-3.5 text-primary" />
                   </span>
                 </div>

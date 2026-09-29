@@ -16,6 +16,7 @@ import {
   Moon,
   Armchair,
   Bed,
+  Clock3,
 } from "lucide-react";
 
 import { AppLayout } from "@/components/layout";
@@ -376,32 +377,76 @@ function SearchPageContent() {
                         )}
                       </div>
 
-                      <div className="mt-4 flex items-center gap-4">
-                        <div>
-                          <p className="font-display text-2xl font-semibold tabular-nums text-ink">
+                      <div className="mt-4 flex items-center justify-between gap-3 sm:gap-6">
+                        {/* Origin Departure */}
+                        <div className="min-w-[80px] sm:min-w-[100px]">
+                          <p className="font-display text-2xl sm:text-3xl font-bold tabular-nums tracking-tight text-ink">
                             {extractTime(trip.dateStart)}
                           </p>
-                          <p className="text-sm font-medium text-ink">
+                          <p className="mt-0.5 text-sm font-semibold text-ink">
                             {trip.from.name ?? trip.from.code}
                           </p>
+                          {trip.from.code && (
+                            <p className="text-[11px] font-mono text-ink-muted">
+                              Ga {trip.from.code}
+                            </p>
+                          )}
                         </div>
-                        <div className="flex flex-1 flex-col items-center">
-                          <span className="text-[10px] font-semibold uppercase tracking-widest text-ink-muted">
-                            {calcDuration(trip.dateStart, trip.dateEnd)}
-                          </span>
-                          <div className="mt-1.5 flex w-full max-w-[160px] items-center gap-1">
-                            <span className="size-2 rounded-full border-2 border-primary bg-primary-soft" />
-                            <div className="h-px flex-1 bg-border" />
-                            <span className="size-2 rounded-full border-2 border-primary bg-primary" />
+
+                        {/* Journey Route & Duration Indicator */}
+                        <div className="flex flex-1 flex-col items-center px-2">
+                          {/* Duration pill badge */}
+                          <div className="inline-flex items-center gap-1.5 rounded-full bg-surface-2 px-3 py-1 text-[11px] font-semibold text-ink-muted">
+                            <Clock3 className="size-3 text-primary" />
+                            <span className="font-mono">{calcDuration(trip.dateStart, trip.dateEnd)}</span>
                           </div>
+
+                          {/* Connecting Rail Track with Dots & Train Icon */}
+                          <div className="relative mt-2.5 flex w-full max-w-[200px] items-center">
+                            {/* Origin Ring Dot */}
+                            <span
+                              className="relative z-10 flex size-3.5 shrink-0 items-center justify-center rounded-full bg-card ring-2 ring-primary"
+                              title="Ga khởi hành"
+                            >
+                              <span className="size-1.5 rounded-full bg-primary" />
+                            </span>
+
+                            {/* Visual Track Line */}
+                            <div className="relative mx-1 h-[2px] flex-1 bg-surface-3">
+                              <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/60 to-primary/40" />
+                              {/* Centered Train Icon Badge */}
+                              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-card p-0.5 shadow-2xs">
+                                <TrainFront className="size-3 text-primary" />
+                              </div>
+                            </div>
+
+                            {/* Destination Solid Dot */}
+                            <span
+                              className="relative z-10 flex size-3.5 shrink-0 items-center justify-center rounded-full bg-primary ring-2 ring-primary/30"
+                              title="Ga đến"
+                            >
+                              <span className="size-1.5 rounded-full bg-white" />
+                            </span>
+                          </div>
+
+                          <span className="mt-1.5 text-[10px] font-medium uppercase tracking-wider text-ink-subtle">
+                            Chuyến thẳng
+                          </span>
                         </div>
-                        <div className="text-right">
-                          <p className="font-display text-2xl font-semibold tabular-nums text-ink">
+
+                        {/* Destination Arrival */}
+                        <div className="min-w-[80px] sm:min-w-[100px] text-right">
+                          <p className="font-display text-2xl sm:text-3xl font-bold tabular-nums tracking-tight text-ink">
                             {extractTime(trip.dateEnd)}
                           </p>
-                          <p className="text-sm font-medium text-ink">
+                          <p className="mt-0.5 text-sm font-semibold text-ink">
                             {trip.to.name ?? trip.to.code}
                           </p>
+                          {trip.to.code && (
+                            <p className="text-[11px] font-mono text-ink-muted">
+                              Ga {trip.to.code}
+                            </p>
+                          )}
                         </div>
                       </div>
 

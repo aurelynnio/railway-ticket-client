@@ -204,8 +204,8 @@ export default function OrderDetailPage() {
                         Tàu {order.trainNumber ?? "—"}
                       </p>
                       <div className="relative my-2 flex items-center justify-center">
-                        <div className="h-0.5 w-full bg-border" />
-                        <span className="absolute bg-card px-2 text-ink-subtle">➔</span>
+                        <div className="h-[2px] w-full bg-gradient-to-r from-primary/30 via-accent/50 to-primary/30" />
+                        <span className="absolute rounded-full bg-card px-2 py-0.5 text-xs text-primary font-bold shadow-2xs">➔</span>
                       </div>
                       <p className="text-[11px] text-ink-muted">
                         Toa {order.coachCode ?? "—"} ({order.seatClass ?? "Ghế mềm"})
