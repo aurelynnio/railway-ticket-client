@@ -248,7 +248,7 @@ export function QuickSearchModal({ open, onOpenChange }: QuickSearchModalProps) 
                 </div>
               ) : (
                 <div className="space-y-2">
-                  {trips.map((trip, idx) => {
+                  {trips.map((trip: SearchTripResponse, idx: number) => {
                     const isSelected = idx === selectedIndex;
                     const depTime = trip.dateStart
                       ? new Date(trip.dateStart).toLocaleTimeString("vi-VN", {
